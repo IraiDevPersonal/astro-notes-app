@@ -1,0 +1,5 @@
+.sidebar-starting-style {
+  @starting-style {
+    opacity: 0;
+  }
+}

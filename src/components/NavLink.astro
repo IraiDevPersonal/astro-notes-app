@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = {
+  href: string;
+  exact?: boolean;
+  classNames?: Partial<{
+    active: string;
+    root: string;
+  }>;
+} & Omit<HTMLAttributes<"a">, "class">;
+
+const { href, exact = false, classNames = {}, ...props } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const isActive = exact ? href === pathname : pathname.includes(href);
+---
+
+<a
+  {...props}
+  href={href}
+  class:list={[classNames.root, isActive && classNames.active]}
+>
+  <slot />
+</a>

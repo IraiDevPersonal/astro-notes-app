@@ -1,0 +1,6 @@
+.portal-starting-style {
+  @starting-style {
+    opacity: 0;
+    scale: 0.95;
+  }
+}

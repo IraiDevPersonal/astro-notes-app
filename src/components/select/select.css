@@ -1,0 +1,52 @@
+@reference "../../styles/globals.css";
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select::picker-icon {
+  @apply rotate-0 transition-transform size-4;
+  content: "";
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("./svg/select-arrow.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+select:open::picker-icon {
+  @apply rotate-180;
+}
+
+::picker(select) {
+  @apply border border-border my-1 rounded bg-background shadow-2xl top-[calc(anchor(bottom)+1px)];
+  opacity: 0;
+  scale: 0.98;
+  transform-origin: top;
+  transition: opacity 300ms ease-out, scale 300ms ease-out,
+    display 300ms allow-discrete, overlay 300ms allow-discrete;
+}
+
+select:open::picker(select) {
+  opacity: 1;
+  scale: 1;
+}
+
+@starting-style {
+  select:open::picker(select) {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("./svg/select-check.svg");
+  mask-size: 1rem;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
