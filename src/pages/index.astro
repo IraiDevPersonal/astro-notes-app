@@ -1,13 +1,13 @@
 ---
-import { Test } from "@/components/test";
 import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider } from "@/components/sidebar";
 import RootLayout from "../layouts/RootLayout.astro";
 
 const pathname = Astro.url.pathname;
 ---
 
 <RootLayout title="Notes App">
-  <AppSidebar client:load pathname={pathname}>
-    <Test client:load />
-  </AppSidebar>
+  <SidebarProvider>
+    <AppSidebar client:load pathname={pathname} />
+  </SidebarProvider>
 </RootLayout>

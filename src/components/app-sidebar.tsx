@@ -1,12 +1,7 @@
 import { Sidebar } from "./sidebar";
+import { Test } from "./test";
 
-export function AppSidebar({
-  pathname,
-  children,
-}: {
-  pathname: string;
-  children: React.ReactNode;
-}) {
+export function AppSidebar({ pathname }: { pathname: string }) {
   return (
     <Sidebar.Provider>
       <Sidebar>
@@ -26,7 +21,7 @@ export function AppSidebar({
         </Sidebar.Content>
         <Sidebar.Footer>Usuario</Sidebar.Footer>
       </Sidebar>
-      {children}
+      <Test />
     </Sidebar.Provider>
   );
 }

@@ -8,14 +8,14 @@ import { Label } from "./label";
 import { Modal } from "./modal";
 import { ScrollArea } from "./scroll-area";
 import { Select } from "./select";
+import { Sidebar } from "./sidebar";
 import { Textarea } from "./textarea";
-import { SidebarTrigger } from "./sidebar";
 
 export function Test() {
   return (
     <ScrollArea className="p-20 h-dvh space-y-4 w-full" as={"main"}>
       <h1>Notes App</h1>
-      <SidebarTrigger />
+      <Sidebar.Trigger />
       <div className="space-y-4">
         <Dropdown>
           <Dropdown.Trigger>Dropdown</Dropdown.Trigger>
