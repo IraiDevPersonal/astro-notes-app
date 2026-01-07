@@ -1,0 +1,46 @@
+---
+import { cn } from "@/lib/utils";
+import "./styles.css";
+---
+
+<aside
+  id="sidebar"
+  data-open="false"
+  aria-label="Sidebar"
+  class={cn(
+    "xs:min-w-72 xs:w-72 w-full h-dvh py-8 px-6 bg-box fixed md:relative top-0 left-0 z-30 transition-transform -translate-x-full data-[open=true]:translate-x-0 md:translate-x-0 border-r border-transparent md:border-transparent xs:border-border"
+  )}
+>
+  <div class="flex flex-col h-full gap-y-8">
+    <slot />
+  </div>
+</aside>
+
+<script>
+  import { $ } from "@/lib/utils";
+
+  function init() {
+    try {
+      const sidebar = $<HTMLDivElement>("sidebar");
+
+      function open() {
+        sidebar.dataset.open = "true";
+      }
+      function close() {
+        sidebar.dataset.open = "false";
+      }
+      function toggle() {
+        const isOpen = sidebar.dataset.open === "true";
+        sidebar.dataset.open = isOpen ? "false" : "true";
+      }
+
+      document.addEventListener("sidebar:open", open);
+      document.addEventListener("sidebar:close", close);
+      document.addEventListener("sidebar:toggle", toggle);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  init();
+</script>

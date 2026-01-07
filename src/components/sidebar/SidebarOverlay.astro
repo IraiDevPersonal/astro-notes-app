@@ -1,0 +1,20 @@
+---
+import { Portal } from "../portal";
+---
+
+<Portal
+  visible={true}
+  id="sidebar-overlay"
+  aria-label="Sidebar Overlay"
+  className="fixed inset-0 z-20 bg-background/50 backdrop-blur-xs transition-discrete sidebar-starting-style transition-[display,opacity] hidden xs:block md:hidden opacity-100 md:duration-75 data-[open=false]:hidden data-[open=false]:opacity-0"
+/>
+
+<script is:inline>
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("sidebar-overlay");
+
+  overlay?.addEventListener("click", () => {
+    sidebar?.setAttribute("data-open", false);
+    overlay?.setAttribute("data-open", false);
+  });
+</script>

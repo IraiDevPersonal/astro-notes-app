@@ -1,0 +1,13 @@
+---
+import { cn } from "@/lib/utils";
+
+type Props = {
+  className?: string;
+};
+
+const { className } = Astro.props;
+---
+
+<ul aria-label="Sidebar Menu" class={cn("flex flex-col gap-y-1.5", className)}>
+  <slot />
+</ul>

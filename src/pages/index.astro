@@ -1,13 +1,12 @@
 ---
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider } from "@/components/sidebar";
+import AppSidebar from "@/components/AppSidebar.astro";
 import RootLayout from "../layouts/RootLayout.astro";
-
-const pathname = Astro.url.pathname;
+import SidebarTrigger from "@/components/sidebar/SidebarTrigger.astro";
 ---
 
 <RootLayout title="Notes App">
-  <SidebarProvider>
-    <AppSidebar client:load pathname={pathname} />
-  </SidebarProvider>
+  <AppSidebar />
+  <div class="p-10 w-full">
+    <SidebarTrigger className="ml-auto" />
+  </div>
 </RootLayout>

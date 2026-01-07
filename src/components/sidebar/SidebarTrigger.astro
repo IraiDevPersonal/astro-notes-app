@@ -1,0 +1,52 @@
+---
+import { PanelRightClose, X } from "lucide-react";
+import { Button, type ButtonProps } from "../button";
+import { cn } from "@/lib/utils";
+
+type Props = {
+  variant?: ButtonProps["variant"];
+  className?: string;
+};
+
+const { variant, className } = Astro.props;
+---
+
+<Button
+  client:load
+  size={"icon"}
+  variant={variant}
+  data-open="false"
+  id="sidebar-trigger"
+  className={cn(
+    "md:hidden data-[open=true]:[&_svg]:-rotate-180 [&_svg]:transition-transform",
+    className
+  )}
+>
+  <PanelRightClose />
+</Button>
+
+<script>
+  import { $ } from "@/lib/utils";
+
+  function init() {
+    try {
+      const sidebarTrigger = $<HTMLButtonElement>("sidebar-trigger");
+
+      function toggle() {
+        const isOpen = sidebarTrigger.dataset.open === "true";
+        sidebarTrigger.dataset.open = isOpen ? "false" : "true";
+      }
+
+      document.addEventListener("sidebar-trigger:toggle", toggle);
+
+      sidebarTrigger.addEventListener("click", () => {
+        document.dispatchEvent(new CustomEvent("sidebar-trigger:toggle"));
+        document.dispatchEvent(new CustomEvent("sidebar:toggle"));
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  init();
+</script>

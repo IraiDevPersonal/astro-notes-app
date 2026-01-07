@@ -1,0 +1,29 @@
+---
+import Sidebar from "./sidebar/Sidebar.astro";
+import SidebarHeader from "./sidebar/SidebarHeader.astro";
+import SidebarContent from "./sidebar/SidebarContent.astro";
+import SidebarMenuTitle from "./sidebar/SidebarMenuTitle.astro";
+import SidebarMenu from "./sidebar/SidebarMenu.astro";
+import SidebarMenuItem from "./sidebar/SidebarMenuItem.astro";
+import SidebarFooter from "./sidebar/SidebarFooter.astro";
+
+const pathname = Astro.url.pathname;
+---
+
+<Sidebar>
+  <SidebarHeader>
+    <span>Notes App</span>
+  </SidebarHeader>
+  <SidebarContent>
+    <SidebarMenuTitle>Menu</SidebarMenuTitle>
+    <SidebarMenu>
+      <SidebarMenuItem href="/" isActive={pathname === "/"}>
+        Home
+      </SidebarMenuItem>
+      <SidebarMenuItem href="/about" isActive={pathname === "/about"}>
+        About
+      </SidebarMenuItem>
+    </SidebarMenu>
+  </SidebarContent>
+  <SidebarFooter>Usuario</SidebarFooter>
+</Sidebar>

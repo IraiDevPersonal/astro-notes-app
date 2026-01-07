@@ -14,12 +14,12 @@ export const buttonVariant = cva(
           "text-danger-foreground bg-danger not-disabled:hover:bg-danger/80 focus-visible:outline-danger",
       },
       size: {
-        default: "text-sm px-3 h-9 [&>svg]:size-4 rounded",
-        sm: "text-xs px-2 h-8 [&>svg]:size-4 rounded-sm",
-        lg: "text-lg px-4 h-12 [&>svg]:size-6 rounded-xl",
-        icon: "text-sm h-9 w-9 min-w-9 [&>svg]:size-4 rounded",
-        "icon-sm": "text-base h-8 w-8 min-w-8 [&>svg]:size-4 rounded-sm",
-        "icon-lg": "text-lg h-12 w-12 min-w-12 [&>svg]:size-6 rounded-xl",
+        default: "text-sm px-3 h-9 [&_svg]:size-4 rounded",
+        sm: "text-xs px-2 h-8 [&_svg]:size-4 rounded-sm",
+        lg: "text-lg px-4 h-12 [&_svg]:size-6 rounded-xl",
+        icon: "text-sm h-9 w-9 min-w-9 [&_svg]:size-4 rounded",
+        "icon-sm": "text-base h-8 w-8 min-w-8 [&_svg]:size-4 rounded-sm",
+        "icon-lg": "text-lg h-12 w-12 min-w-12 [&_svg]:size-6 rounded-xl",
       },
       fullRounded: {
         true: "rounded-full",

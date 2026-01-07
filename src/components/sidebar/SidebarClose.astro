@@ -1,0 +1,44 @@
+---
+import { X } from "lucide-react";
+import { Button, type ButtonProps } from "../button";
+import { cn } from "@/lib/utils";
+
+type Props = {
+  variant?: ButtonProps["variant"];
+  className?: string;
+};
+
+const { variant = "text", className } = Astro.props;
+---
+
+<Button
+  size={"icon"}
+  variant={variant}
+  data-open="false"
+  id="sidebar-close"
+  className={cn(
+    "md:hidden not-[data-as-close=true]:data-[open=true]:[&>svg]:-rotate-180 [&>svg]:transition-transform",
+    className
+  )}
+>
+  <X />
+</Button>
+
+<script>
+  import { $ } from "@/lib/utils";
+
+  function init() {
+    try {
+      const sidebarClose = $<HTMLButtonElement>("sidebar-close");
+
+      sidebarClose.addEventListener("click", () => {
+        document.dispatchEvent(new CustomEvent("sidebar-trigger:toggle"));
+        document.dispatchEvent(new CustomEvent("sidebar:close"));
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  init();
+</script>
