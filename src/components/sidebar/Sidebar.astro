@@ -6,6 +6,7 @@ import "./styles.css";
 <aside
   id="sidebar"
   data-open="false"
+  role="navigation"
   aria-label="Sidebar"
   class={cn(
     "xs:min-w-72 xs:w-72 w-full h-dvh py-8 px-6 bg-box fixed md:relative top-0 left-0 z-30 transition-transform -translate-x-full data-[open=true]:translate-x-0 md:translate-x-0 border-r border-transparent md:border-transparent xs:border-border"
@@ -15,6 +16,13 @@ import "./styles.css";
     <slot />
   </div>
 </aside>
+<div
+  data-open="false"
+  id="sidebar-overlay"
+  aria-label="Sidebar Overlay"
+  class="fixed inset-0 z-20 bg-background/50 backdrop-blur-xs transition-discrete sidebar-starting-style transition-[display,opacity] hidden xs:block md:hidden opacity-100 md:duration-75 data-[open=false]:hidden data-[open=false]:opacity-0"
+>
+</div>
 
 <script>
   import { $ } from "@/lib/utils";
@@ -22,17 +30,32 @@ import "./styles.css";
   function init() {
     try {
       const sidebar = $<HTMLDivElement>("sidebar");
+      const overlay = $<HTMLDivElement>("sidebar-overlay");
+      const mediaQuery = window.matchMedia("(width >= 48rem)");
 
       function open() {
+        document.body.style.overflow = "hidden";
         sidebar.dataset.open = "true";
+        overlay.dataset.open = "true";
       }
       function close() {
+        document.body.style.overflow = "auto";
         sidebar.dataset.open = "false";
+        overlay.dataset.open = "false";
       }
       function toggle() {
         const isOpen = sidebar.dataset.open === "true";
-        sidebar.dataset.open = isOpen ? "false" : "true";
+        isOpen ? close() : open();
       }
+      function widthChange(e: MediaQueryListEvent) {
+        const match = e.matches;
+        if (match) {
+          close();
+        }
+      }
+
+      overlay.addEventListener("click", close);
+      mediaQuery.addEventListener("change", widthChange);
 
       document.addEventListener("sidebar:open", open);
       document.addEventListener("sidebar:close", close);
