@@ -47,7 +47,7 @@ import "./styles.css";
         const isOpen = sidebar.dataset.open === "true";
         isOpen ? close() : open();
       }
-      function widthChange(e: MediaQueryListEvent) {
+      function mediaQueryChange(e: MediaQueryListEvent) {
         const match = e.matches;
         if (match) {
           close();
@@ -55,7 +55,7 @@ import "./styles.css";
       }
 
       overlay.addEventListener("click", close);
-      mediaQuery.addEventListener("change", widthChange);
+      mediaQuery.addEventListener("change", mediaQueryChange);
 
       document.addEventListener("sidebar:open", open);
       document.addEventListener("sidebar:close", close);
