@@ -5,16 +5,15 @@ import { cn } from "@/lib/utils";
 import { SIDEBAR_IDS } from "./constants";
 
 type Props = {
-  variant?: ButtonProps["variant"];
   className?: string;
-};
+} & Pick<ButtonProps, "size" | "variant">;
 
-const { variant, className } = Astro.props;
+const { size = "icon", variant = "primary", className } = Astro.props;
 ---
 
 <Button
   client:load
-  size={"icon"}
+  size={size}
   variant={variant}
   data-open="false"
   id={SIDEBAR_IDS.TRIGGER}
@@ -23,7 +22,7 @@ const { variant, className } = Astro.props;
     className
   )}
 >
-  <PanelRightClose />
+  {Astro.slots.has("default") ? <slot /> : <PanelRightClose />}
 </Button>
 
 <script>

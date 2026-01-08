@@ -5,24 +5,20 @@ import { cn } from "@/lib/utils";
 import { SIDEBAR_IDS } from "./constants";
 
 type Props = {
-  variant?: ButtonProps["variant"];
   className?: string;
-};
+} & Pick<ButtonProps, "variant" | "size">;
 
-const { variant = "secondary", className } = Astro.props;
+const { variant = "secondary", size = "icon", className } = Astro.props;
 ---
 
 <Button
-  size={"icon"}
+  size={size}
   variant={variant}
   data-open="false"
   id={SIDEBAR_IDS.CLOSE}
-  className={cn(
-    "md:hidden not-[data-as-close=true]:data-[open=true]:[&>svg]:-rotate-180 [&>svg]:transition-transform",
-    className
-  )}
+  className={cn("md:hidden", className)}
 >
-  <X />
+  {Astro.slots.has("default") ? <slot /> : <X />}
 </Button>
 
 <script>
