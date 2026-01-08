@@ -1,4 +1,5 @@
 ---
+import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "astro/types";
 
 type Props = {
@@ -19,7 +20,7 @@ const isActive = exact ? href === pathname : pathname.includes(href);
 <a
   {...props}
   href={href}
-  class:list={[classNames.root, isActive && classNames.active]}
+  class:list={cn(classNames.root, isActive && classNames.active)}
 >
   <slot />
 </a>

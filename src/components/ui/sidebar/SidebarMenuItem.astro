@@ -1,32 +1,45 @@
 ---
 import { cn } from "@/lib/utils";
+import NavLink from "../NavLink.astro";
 
 type Props = {
-  className?: string;
+  classNames?: {
+    root?: string;
+    active?: string;
+  };
   isActive?: boolean;
   href?: string;
 };
 
-const { className, href, isActive } = Astro.props;
+const { classNames, href, isActive } = Astro.props;
 
 const cls = {
-  root: "relative overflow-hidden border border-transparent px-4 h-9 w-full flex items-center gap-2 hover:bg-foreground/10 rounded transition-colors outline-transparent ring-0 focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2",
-  active:
-    'bg-foreground/10 after:content-[""] after:absolute after:w-2.5 after:h-full after:bg-foreground/30 after:left-0 border-foreground/30 hover:bg-foreground/15',
+  root: "relative overflow-hidden px-4 h-9 w-full flex items-center gap-2 rounded transition-colors outline-transparent ring-0 focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2 after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-full after:rounded after:bg-foreground/10 after:left-0 after:transition-[width]",
+  active: "after:w-full hover:after:w-[97%] hover:bg-foreground/10",
 };
+
+const asLink = !!href;
 ---
 
 <li
+  role={asLink ? "link" : "listitem"}
   aria-label="Sidebar Menu Item"
-  class={cn(href ? "" : cls.root, !href && className)}
+  class:list={cn(
+    !asLink && (classNames?.root ?? cls.root),
+    !asLink && isActive && (classNames?.active ?? cls.active)
+  )}
 >
   {
-    href ? (
-      <a href={href} class={cn(cls.root, isActive && cls.active)}>
-        <slot />
-      </a>
+    asLink ? (
+      <NavLink href={href!} classNames={cls}>
+        <span class="z-20">
+          <slot />
+        </span>
+      </NavLink>
     ) : (
-      <slot />
+      <span class="z-20">
+        <slot />
+      </span>
     )
   }
 </li>
