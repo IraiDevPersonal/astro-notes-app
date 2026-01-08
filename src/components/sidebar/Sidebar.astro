@@ -1,10 +1,10 @@
 ---
 import { cn } from "@/lib/utils";
-import "./styles.css";
+import { SIDEBAR_IDS } from "./constants";
 ---
 
 <aside
-  id="sidebar"
+  id={SIDEBAR_IDS.SIDEBAR}
   data-open="false"
   role="navigation"
   aria-label="Sidebar"
@@ -18,27 +18,43 @@ import "./styles.css";
 </aside>
 <div
   data-open="false"
-  id="sidebar-overlay"
+  id={SIDEBAR_IDS.OVERLAY}
   aria-label="Sidebar Overlay"
-  class="fixed inset-0 z-20 bg-background/50 backdrop-blur-xs transition-discrete sidebar-starting-style transition-[display,opacity] hidden xs:block md:hidden opacity-100 md:duration-75 data-[open=false]:hidden data-[open=false]:opacity-0"
+  class="fixed inset-0 z-20 bg-background/50 backdrop-blur-xs transition-discrete starting-style transition-[display,opacity] hidden xs:block md:hidden opacity-100 md:duration-75 data-[open=false]:hidden data-[open=false]:opacity-0"
 >
 </div>
 
+<style>
+  .starting-style {
+    @starting-style {
+      opacity: 0;
+    }
+  }
+</style>
+
 <script>
   import { $ } from "@/lib/utils";
+  import { SIDEBAR_CUSTOM_EVENTS, SIDEBAR_IDS } from "./constants";
 
   function init() {
     try {
-      const sidebar = $<HTMLDivElement>("sidebar");
-      const overlay = $<HTMLDivElement>("sidebar-overlay");
+      const sidebar = $<HTMLDivElement>(SIDEBAR_IDS.SIDEBAR);
+      const overlay = $<HTMLDivElement>(SIDEBAR_IDS.OVERLAY);
       const mediaQuery = window.matchMedia("(width >= 48rem)");
 
+      function toggleTriggerOpenState() {
+        document.dispatchEvent(
+          new CustomEvent(SIDEBAR_CUSTOM_EVENTS.TRIGGER_TOGGLE)
+        );
+      }
       function open() {
+        toggleTriggerOpenState();
         document.body.style.overflow = "hidden";
         sidebar.dataset.open = "true";
         overlay.dataset.open = "true";
       }
       function close() {
+        toggleTriggerOpenState();
         document.body.style.overflow = "auto";
         sidebar.dataset.open = "false";
         overlay.dataset.open = "false";
@@ -57,9 +73,9 @@ import "./styles.css";
       overlay.addEventListener("click", close);
       mediaQuery.addEventListener("change", mediaQueryChange);
 
-      document.addEventListener("sidebar:open", open);
-      document.addEventListener("sidebar:close", close);
-      document.addEventListener("sidebar:toggle", toggle);
+      document.addEventListener(SIDEBAR_CUSTOM_EVENTS.OPEN, open);
+      document.addEventListener(SIDEBAR_CUSTOM_EVENTS.CLOSE, close);
+      document.addEventListener(SIDEBAR_CUSTOM_EVENTS.TOGGLE, toggle);
     } catch (error) {
       console.error(error);
     }

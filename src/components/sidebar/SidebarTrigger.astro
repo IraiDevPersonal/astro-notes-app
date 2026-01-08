@@ -1,7 +1,8 @@
 ---
-import { PanelRightClose, X } from "lucide-react";
+import { PanelRightClose } from "lucide-react";
 import { Button, type ButtonProps } from "../button";
 import { cn } from "@/lib/utils";
+import { SIDEBAR_IDS } from "./constants";
 
 type Props = {
   variant?: ButtonProps["variant"];
@@ -16,9 +17,9 @@ const { variant, className } = Astro.props;
   size={"icon"}
   variant={variant}
   data-open="false"
-  id="sidebar-trigger"
+  id={SIDEBAR_IDS.TRIGGER}
   className={cn(
-    "md:hidden data-[open=true]:[&_svg]:-rotate-180 [&_svg]:transition-transform",
+    "md:hidden data-[open=true]:[&_svg]:rotate-180 [&_svg]:transition-transform",
     className
   )}
 >
@@ -27,22 +28,26 @@ const { variant, className } = Astro.props;
 
 <script>
   import { $ } from "@/lib/utils";
+  import { SIDEBAR_CUSTOM_EVENTS, SIDEBAR_IDS } from "./constants";
 
   function init() {
     try {
-      const sidebarTrigger = $<HTMLButtonElement>("sidebar-trigger");
+      const sidebarTrigger = $<HTMLButtonElement>(SIDEBAR_IDS.TRIGGER);
 
-      function toggle() {
+      function toggleOpenState() {
         const isOpen = sidebarTrigger.dataset.open === "true";
         sidebarTrigger.dataset.open = isOpen ? "false" : "true";
       }
+      function toggleSidebar() {
+        document.dispatchEvent(new CustomEvent(SIDEBAR_CUSTOM_EVENTS.TOGGLE));
+      }
 
-      document.addEventListener("sidebar-trigger:toggle", toggle);
+      sidebarTrigger.addEventListener("click", toggleSidebar);
 
-      sidebarTrigger.addEventListener("click", () => {
-        document.dispatchEvent(new CustomEvent("sidebar-trigger:toggle"));
-        document.dispatchEvent(new CustomEvent("sidebar:toggle"));
-      });
+      document.addEventListener(
+        SIDEBAR_CUSTOM_EVENTS.TRIGGER_TOGGLE,
+        toggleOpenState
+      );
     } catch (error) {
       console.error(error);
     }

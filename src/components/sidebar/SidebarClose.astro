@@ -2,6 +2,7 @@
 import { X } from "lucide-react";
 import { Button, type ButtonProps } from "../button";
 import { cn } from "@/lib/utils";
+import { SIDEBAR_IDS } from "./constants";
 
 type Props = {
   variant?: ButtonProps["variant"];
@@ -15,7 +16,7 @@ const { variant = "secondary", className } = Astro.props;
   size={"icon"}
   variant={variant}
   data-open="false"
-  id="sidebar-close"
+  id={SIDEBAR_IDS.CLOSE}
   className={cn(
     "md:hidden not-[data-as-close=true]:data-[open=true]:[&>svg]:-rotate-180 [&>svg]:transition-transform",
     className
@@ -26,15 +27,17 @@ const { variant = "secondary", className } = Astro.props;
 
 <script>
   import { $ } from "@/lib/utils";
+  import { SIDEBAR_CUSTOM_EVENTS, SIDEBAR_IDS } from "./constants";
 
   function init() {
     try {
-      const sidebarClose = $<HTMLButtonElement>("sidebar-close");
+      const sidebarClose = $<HTMLButtonElement>(SIDEBAR_IDS.CLOSE);
 
-      sidebarClose.addEventListener("click", () => {
-        document.dispatchEvent(new CustomEvent("sidebar-trigger:toggle"));
-        document.dispatchEvent(new CustomEvent("sidebar:close"));
-      });
+      function closeSidebar() {
+        document.dispatchEvent(new CustomEvent(SIDEBAR_CUSTOM_EVENTS.CLOSE));
+      }
+
+      sidebarClose.addEventListener("click", closeSidebar);
     } catch (error) {
       console.error(error);
     }
