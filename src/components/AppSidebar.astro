@@ -16,14 +16,16 @@ const pathname = Astro.url.pathname;
   </SidebarHeader>
   <SidebarContent>
     <SidebarMenuTitle>Menu</SidebarMenuTitle>
-    <SidebarMenu>
-      <SidebarMenuItem href="/" isActive={pathname === "/"}>
-        Home
-      </SidebarMenuItem>
-      <SidebarMenuItem href="/about" isActive={pathname === "/about"}>
-        About
-      </SidebarMenuItem>
-    </SidebarMenu>
+    <nav>
+      <SidebarMenu>
+        <SidebarMenuItem href="/" isActive={pathname === "/"}>
+          Home
+        </SidebarMenuItem>
+        <SidebarMenuItem href="/about" isActive={pathname === "/about"}>
+          About
+        </SidebarMenuItem>
+      </SidebarMenu>
+    </nav>
   </SidebarContent>
   <SidebarFooter>Usuario</SidebarFooter>
 </Sidebar>

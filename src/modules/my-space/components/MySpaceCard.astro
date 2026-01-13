@@ -1,0 +1,34 @@
+---
+import Card from "@/components/ui/card/Card.astro";
+import CardBody from "@/components/ui/card/CardBody.astro";
+import CardHeader from "@/components/ui/card/CardHeader.astro";
+import Typography from "@/components/ui/Typography.astro";
+
+type Props = {
+  title: string;
+  resourceCount?: number;
+};
+
+const { title, resourceCount } = Astro.props;
+---
+
+<Card className="h-32 md:h-44 lg:h-52 justify-end flex-1 md:gap-8">
+  <CardHeader className="md:[&_svg]:size-10 transition-[size]">
+    <slot />
+  </CardHeader>
+  <CardBody className="gap-y-0">
+    <Typography
+      tag="h5"
+      class="truncate text-base lg:text-lg transition-[font-size]"
+    >
+      {title}
+    </Typography>
+    <Typography
+      tag="small"
+      class="text-xs lg:text-sm transition-[font-size]"
+      muted
+    >
+      {resourceCount} recursos
+    </Typography>
+  </CardBody>
+</Card>

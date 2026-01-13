@@ -1,0 +1,56 @@
+---
+import { Button } from "@/components/ui/button";
+import Header from "@/components/ui/Header.astro";
+import Main from "@/components/ui/Main.astro";
+import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.astro";
+import Typography from "@/components/ui/Typography.astro";
+import AuthLayout from "@/layouts/AuthLayout.astro";
+import MySpaceCard from "@/modules/my-space/components/MySpaceCard.astro";
+import { User, Search, Share2, Pin } from "lucide-react";
+---
+
+<AuthLayout title="Mi Espacio">
+  <div
+    class="flex flex-col gap-y-8 p-4 md:p-6 lg:p-8 w-full transition-[padding]"
+  >
+    <Header>
+      <SidebarTrigger variant="secondary" />
+      <Typography
+        tag="h1"
+        class="transition-[font-size] text-xl sm:text-2xl md:text-4xl"
+      >
+        Mi Espacio
+      </Typography>
+      <Button variant="secondary" size="icon">
+        <Search />
+      </Button>
+    </Header>
+    <Main>
+      <section
+        class="flex items-center justify-center gap-x-4 transition-[gap]"
+      >
+        <MySpaceCard title="Mis Notas" resourceCount={100}>
+          <User />
+        </MySpaceCard>
+        <MySpaceCard title="Notas Compartidas" resourceCount={10}>
+          <Share2 />
+        </MySpaceCard>
+      </section>
+      <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
+        <Typography tag="h3" class="flex gap-2 md:gap-4 items-center">
+          <Pin />
+          Ancladas
+        </Typography>
+        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {
+            Array.from({ length: 17 }).map(() => (
+              <MySpaceCard title="Notas Ancladas" resourceCount={1}>
+                <Pin />
+              </MySpaceCard>
+            ))
+          }
+        </div>
+      </section>
+    </Main>
+  </div>
+</AuthLayout>

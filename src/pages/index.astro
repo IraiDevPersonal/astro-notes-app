@@ -1,12 +1,10 @@
 ---
-import AppSidebar from "@/components/AppSidebar.astro";
+import NavLink from "@/components/ui/NavLink.astro";
 import RootLayout from "../layouts/RootLayout.astro";
-import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.astro";
 ---
 
-<RootLayout title="Notes App">
-  <AppSidebar />
-  <div class="p-10 w-full">
-    <SidebarTrigger className="ml-auto" />
+<RootLayout title="Notes App | Inicio">
+  <div class="h-dvh w-full flex items-center justify-center">
+    <NavLink href="my-space"> Ir a mi espacio </NavLink>
   </div>
 </RootLayout>

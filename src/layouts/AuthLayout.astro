@@ -1,0 +1,15 @@
+---
+import AppSidebar from "@/components/AppSidebar.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<RootLayout title={title}>
+  <AppSidebar />
+  <slot />
+</RootLayout>
