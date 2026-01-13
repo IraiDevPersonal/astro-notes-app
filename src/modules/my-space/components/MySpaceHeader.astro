@@ -1,9 +1,9 @@
 ---
-import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/Header.astro";
+import { SearchBox } from "@/components/ui/search-box/search-box";
 import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.astro";
 import Typography from "@/components/ui/Typography.astro";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 ---
 
 <Header>
@@ -18,7 +18,5 @@ import { Menu, Search } from "lucide-react";
     Mi Espacio
   </Typography>
 
-  <Button variant="secondary" size="icon">
-    <Search />
-  </Button>
+  <SearchBox client:visible />
 </Header>

@@ -1,0 +1,11 @@
+.x-starting-style {
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.search-starting-style {
+  @starting-style {
+    opacity: 100;
+  }
+}
