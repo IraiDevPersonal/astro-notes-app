@@ -1,13 +1,19 @@
 ---
-import FolderCard from "@/modules/folder/components/FolderCard.astro";
+import FolderCard from "@/modules/folders/components/FolderCard.astro";
+import NoteCard from "@/modules/notes/components/NoteCard.astro";
 ---
 
 <div
   class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 transition-[gap]"
 >
   {
-    Array.from({ length: 17 }).map(() => (
+    Array.from({ length: 3 }).map(() => (
       <FolderCard>tarjeta de recurso</FolderCard>
+    ))
+  }
+  {
+    Array.from({ length: 13 }).map(() => (
+      <NoteCard>tarjeta de recurso</NoteCard>
     ))
   }
 </div>

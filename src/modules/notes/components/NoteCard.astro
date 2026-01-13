@@ -1,0 +1,25 @@
+---
+import Card from "@/components/ui/card/Card.astro";
+import CardBody from "@/components/ui/card/CardBody.astro";
+import CardHeader from "@/components/ui/card/CardHeader.astro";
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<Card className="gap-2">
+  <CardHeader>
+    <Typography tag="h6" className="text-xs md:text-sm transition-[font-size]">
+      Note Title
+    </Typography>
+  </CardHeader>
+  <CardBody>
+    <Typography
+      muted
+      tag="p"
+      className="text-xs md:text-sm transition-[font-size]"
+    >
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur totam
+      ipsa nulla tempore id maiores aperiam neque molestias corrupti quis illum
+      doloribus, quam aspernatur. Adipisci saepe soluta architecto illum ab.
+    </Typography>
+  </CardBody>
+</Card>
