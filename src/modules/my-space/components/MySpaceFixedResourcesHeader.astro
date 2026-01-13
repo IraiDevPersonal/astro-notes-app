@@ -1,0 +1,19 @@
+---
+import { Button } from "@/components/ui/button";
+import Typography from "@/components/ui/Typography.astro";
+import { Pin } from "lucide-react";
+---
+
+<header class="flex items-center justify-between px-5 md:px-6">
+  <Typography tag="h4">
+    <Pin className="size-4 text-primary fill-primary inline-block mr-2" />
+    Ancladas
+  </Typography>
+
+  <Button
+    variant={"text"}
+    className="text-muted-foreground hover:text-foreground"
+  >
+    ver todo
+  </Button>
+</header>

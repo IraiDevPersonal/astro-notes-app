@@ -1,0 +1,24 @@
+---
+import { Button } from "@/components/ui/button";
+import Header from "@/components/ui/Header.astro";
+import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.astro";
+import Typography from "@/components/ui/Typography.astro";
+import { Menu, Search } from "lucide-react";
+---
+
+<Header>
+  <SidebarTrigger variant="secondary">
+    <Menu />
+  </SidebarTrigger>
+
+  <Typography
+    tag="h1"
+    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl"
+  >
+    Mi Espacio
+  </Typography>
+
+  <Button variant="secondary" size="icon">
+    <Search />
+  </Button>
+</Header>

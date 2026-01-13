@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import ScrollArea from "../ScrollArea.astro";
 
 type ModalBodyProps = {
   children: React.ReactNode;
@@ -7,11 +8,11 @@ type ModalBodyProps = {
 
 export function ModalBody({ children, className }: ModalBodyProps) {
   return (
-    <div
+    <ScrollArea
       aria-label="Modal Body"
       className={cn("p-4 flex flex-col gap-y-2", className)}
     >
       {children}
-    </div>
+    </ScrollArea>
   );
 }

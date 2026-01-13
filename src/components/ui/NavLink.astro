@@ -20,7 +20,7 @@ const isActive = exact ? href === pathname : pathname.includes(href);
 <a
   {...props}
   href={href}
-  class:list={cn(classNames.root, isActive && classNames.active)}
+  class={cn(classNames.root, isActive && classNames.active)}
 >
   <slot />
 </a>

@@ -12,20 +12,24 @@ type Props = {
 const { title, resourceCount } = Astro.props;
 ---
 
-<Card className="h-32 md:h-44 lg:h-52 justify-end flex-1 md:gap-8">
-  <CardHeader className="md:[&_svg]:size-10 transition-[size]">
+<Card
+  className="justify-end flex-1 md:gap-6 bg-linear-to-br from-box-foreground/10 from-5% to-box border-border"
+>
+  <CardHeader
+    className="[&_svg]:size-6 md:[&_svg]:size-8 lg:[&_svg]:size-10 [&_svg]:transition-[width,height]"
+  >
     <slot />
   </CardHeader>
   <CardBody className="gap-y-0">
     <Typography
       tag="h5"
-      class="truncate text-base lg:text-lg transition-[font-size]"
+      className="truncate text-base lg:text-lg transition-[font-size]"
     >
       {title}
     </Typography>
     <Typography
       tag="small"
-      class="text-xs lg:text-sm transition-[font-size]"
+      className="text-xs lg:text-sm transition-[font-size]"
       muted
     >
       {resourceCount} recursos
