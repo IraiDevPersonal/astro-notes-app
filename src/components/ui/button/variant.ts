@@ -18,6 +18,7 @@ export const buttonVariant = cva(
         sm: "text-xs px-2 h-8 [&_svg]:size-4 rounded-sm",
         lg: "text-lg px-4 h-12 [&_svg]:size-6 rounded-xl",
         icon: "text-sm h-9 w-9 min-w-9 [&_svg]:size-4 rounded",
+        "icon-xs": "text-xs h-6.5 w-6.5 min-w-6.5 [&_svg]:size-3.5 rounded-sm",
         "icon-sm": "text-base h-8 w-8 min-w-8 [&_svg]:size-4 rounded-sm",
         "icon-lg": "text-lg h-12 w-12 min-w-12 [&_svg]:size-6 rounded-xl",
       },
