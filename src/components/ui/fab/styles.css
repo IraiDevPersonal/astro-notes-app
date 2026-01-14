@@ -1,0 +1,19 @@
+.fab-starting-style {
+  @starting-style {
+    opacity: 0;
+    scale: 90%;
+    transform-origin: bottom;
+  }
+}
+
+.open-starting-style {
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.close-starting-style {
+  @starting-style {
+    opacity: 100;
+  }
+}

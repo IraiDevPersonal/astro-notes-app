@@ -1,11 +1,13 @@
 ---
+import { Button } from "@/components/ui/button";
+import { Fab } from "@/components/ui/fab/fab";
 import Main from "@/components/ui/Main.astro";
 import AuthLayout from "@/layouts/AuthLayout.astro";
 import MySpaceCard from "@/modules/my-space/components/MySpaceCard.astro";
 import MySpaceFixedResources from "@/modules/my-space/components/MySpaceFixedResources.astro";
 import MySpaceFixedResourcesHeader from "@/modules/my-space/components/MySpaceFixedResourcesHeader.astro";
 import MySpaceHeader from "@/modules/my-space/components/MySpaceHeader.astro";
-import { User, Share2 } from "lucide-react";
+import { User, Share2, Plus, FolderPlus } from "lucide-react";
 ---
 
 <AuthLayout title="Mi Espacio">
@@ -38,4 +40,9 @@ import { User, Share2 } from "lucide-react";
       </section>
     </Main>
   </div>
+  <Fab client:only>
+    <Button size={"icon"} fullRounded>
+      <FolderPlus />
+    </Button>
+  </Fab>
 </AuthLayout>

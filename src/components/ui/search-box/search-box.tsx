@@ -34,17 +34,13 @@ export function SearchBox() {
         )}
       >
         <span className="relative *:absolute *:top-1/2 *:left-1/2 *:-translate-x-1/2 *:-translate-y-1/2 *:transition-[opacity,display] *:transition-discrete">
-          <X
-            className={cn(
-              "hidden opacity-0 x-starting-style",
-              isSearchOpen && "block opacity-100"
-            )}
-          />
           <Search
-            className={cn(
-              "block search-starting-style",
-              isSearchOpen && "hidden opacity-0"
-            )}
+            data-open={isSearchOpen}
+            className="hidden opacity-0 close-starting-style data-[open=false]:block data-[open=false]:opacity-100"
+          />
+          <X
+            data-open={isSearchOpen}
+            className="block open-starting-style data-[open=false]:hidden data-[open=false]:opacity-0"
           />
         </span>
       </Button>
