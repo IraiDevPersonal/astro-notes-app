@@ -1,0 +1,24 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<dialog
+  id="hoverable-card"
+  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-xs h-max bg-box p-6 rounded-2xl scale-50 group-hover:scale-100 opacity-0 group-hover:opacity-100 delay-1000 z-50 shadow-xl shadow-foreground/5 border-2 border-border hidden group-hover:flex flex-col transition-[opacity,display,scale] transition-discrete card-starting-style"
+>
+  <Typography muted>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime, libero
+    reiciendis ipsum rerum, nobis, officia numquam nostrum necessitatibus iure
+    deleniti quo? Voluptatem distinctio sapiente architecto maxime nemo est
+    soluta. Maxime.
+  </Typography>
+</dialog>
+
+<style>
+  .card-starting-style {
+    @starting-style {
+      opacity: 0;
+      scale: 50%;
+    }
+  }
+</style>

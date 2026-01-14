@@ -9,14 +9,17 @@ import {
   getTransformOriginProperty,
 } from "./utils";
 import "./styles.css";
+import { cn } from "@/lib/utils";
 
 type DropdownContentProps = {
   placement?: DropdownPlacement;
   children: React.ReactNode;
+  className?: string;
 };
 
 export function DropdownContent({
   placement = "right-end",
+  className,
   children,
 }: DropdownContentProps) {
   const {
@@ -45,7 +48,10 @@ export function DropdownContent({
         transform: getTransformOrigin(placement),
         transformOrigin: getTransformOriginProperty(placement),
       }}
-      className="my-1 z-30 min-w-36 w-max transition-discrete portal-starting-style transition-[opacity,scale,display] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded border border-border p-1"
+      className={cn(
+        "my-1 z-30 min-w-36 w-max transition-discrete portal-starting-style transition-[opacity,scale,display] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded border border-border p-1",
+        className
+      )}
     >
       <ul className="rounded-sm overflow-hidden">{children}</ul>
     </Portal>
@@ -62,6 +68,36 @@ function useDropdown(
     left: 0,
     width: 0,
   });
+
+  // Función para encontrar el ancestro con scroll más cercano
+  const findScrollableParent = useCallback(
+    (element: HTMLElement | null): HTMLElement | Window => {
+      if (!element) return window;
+
+      let parent = element.parentElement;
+
+      while (parent) {
+        const { overflow, overflowY, overflowX } =
+          window.getComputedStyle(parent);
+        const hasScroll =
+          overflow === "auto" ||
+          overflow === "scroll" ||
+          overflowY === "auto" ||
+          overflowY === "scroll" ||
+          overflowX === "auto" ||
+          overflowX === "scroll";
+
+        if (hasScroll) {
+          return parent;
+        }
+
+        parent = parent.parentElement;
+      }
+
+      return window;
+    },
+    []
+  );
 
   const calculatePosition = useCallback(() => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -143,14 +179,18 @@ function useDropdown(
 
     calculatePosition();
 
-    window.addEventListener("scroll", calculatePosition);
+    // Encontrar el contenedor con scroll más cercano
+    const scrollableParent = findScrollableParent(containerRef.current);
+
+    // Agregar listeners
+    scrollableParent.addEventListener("scroll", calculatePosition);
     window.addEventListener("resize", calculatePosition);
 
     return () => {
-      window.removeEventListener("scroll", calculatePosition);
+      scrollableParent.removeEventListener("scroll", calculatePosition);
       window.removeEventListener("resize", calculatePosition);
     };
-  }, [open, containerRef, calculatePosition]);
+  }, [open, containerRef, calculatePosition, findScrollableParent]);
 
   return { position };
 }

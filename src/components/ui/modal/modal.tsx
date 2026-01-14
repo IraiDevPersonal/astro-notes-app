@@ -1,4 +1,4 @@
-import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
+import { useLockScroll } from "@/hooks/use-lock-scroll";
 import { useState } from "react";
 import { ModalContext } from "./modal-context";
 
@@ -16,7 +16,7 @@ export function Modal({
   open,
 }: ModalProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  useLockBodyScroll(open ?? isOpen);
+  useLockScroll(open ?? isOpen);
 
   const handleOpenChange = (value?: boolean) => {
     if (open !== undefined) {

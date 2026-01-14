@@ -24,7 +24,7 @@ export function DropdownItem({
       <button
         onClick={handleClick}
         className={cn(
-          "px-3 py-1.5 hover:bg-foreground/10 transition-colors cursor-pointer [&>svg]:size-4 flex items-center gap-2 w-full",
+          "px-3 py-2 hover:bg-foreground/10 transition-colors cursor-pointer [&>svg]:size-4 flex items-center gap-2 w-full text-sm",
           className
         )}
       >

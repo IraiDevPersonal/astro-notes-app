@@ -3,19 +3,23 @@ import Card from "@/components/ui/card/Card.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
 import Typography from "@/components/ui/Typography.astro";
+import { NoteCardDropdown } from "./note-card-dropdown";
 ---
 
-<Card className="gap-2">
-  <CardHeader className="shrink-0">
+<Card className="gap-2 group relative">
+  <CardHeader className="shrink-0 justify-between">
     <Typography tag="h6" className="text-sm transition-[font-size]">
       Note Title
     </Typography>
+
+    <NoteCardDropdown client:visible />
   </CardHeader>
+
   <CardBody className="flex-1 min-h-0">
     <Typography
       muted
       tag="p"
-      className="text-xs md:text-sm transition-[font-size] line-clamp-7"
+      className="text-xs md:text-sm transition-[font-size] line-clamp-7 card-description"
     >
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur totam
       ipsa nulla tempore id maiores aperiam neque molestias corrupti quis illum
