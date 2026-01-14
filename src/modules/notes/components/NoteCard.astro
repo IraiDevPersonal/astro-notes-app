@@ -6,16 +6,16 @@ import Typography from "@/components/ui/Typography.astro";
 ---
 
 <Card className="gap-2">
-  <CardHeader>
-    <Typography tag="h6" className="text-xs md:text-sm transition-[font-size]">
+  <CardHeader className="shrink-0">
+    <Typography tag="h6" className="text-sm transition-[font-size]">
       Note Title
     </Typography>
   </CardHeader>
-  <CardBody>
+  <CardBody className="flex-1 min-h-0">
     <Typography
       muted
       tag="p"
-      className="text-xs md:text-sm transition-[font-size]"
+      className="text-xs md:text-sm transition-[font-size] line-clamp-7"
     >
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur totam
       ipsa nulla tempore id maiores aperiam neque molestias corrupti quis illum

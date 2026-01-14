@@ -4,10 +4,10 @@ import NoteCard from "@/modules/notes/components/NoteCard.astro";
 ---
 
 <div
-  class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 transition-[gap]"
+  class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-2 md:gap-4 transition-[gap] *:aspect-square"
 >
   {
-    Array.from({ length: 3 }).map(() => (
+    Array.from({ length: 17 }).map(() => (
       <FolderCard>tarjeta de recurso</FolderCard>
     ))
   }
