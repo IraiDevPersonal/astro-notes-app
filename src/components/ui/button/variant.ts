@@ -16,11 +16,13 @@ export const buttonVariant = cva(
       size: {
         default: "text-sm px-3 h-9 [&_svg]:size-4 rounded",
         sm: "text-xs px-2 h-8 [&_svg]:size-4 rounded-sm",
-        lg: "text-lg px-4 h-12 [&_svg]:size-6 rounded-xl",
+        lg: "text-lg px-4 h-12 [&_svg]:size-6 rounded-lg",
+        xl: "text-xl px-6 h-16 [&_svg]:size-6 rounded-xl",
         icon: "text-sm h-9 w-9 min-w-9 [&_svg]:size-4 rounded",
         "icon-xs": "text-xs h-6.5 w-6.5 min-w-6.5 [&_svg]:size-3.5 rounded-sm",
         "icon-sm": "text-base h-8 w-8 min-w-8 [&_svg]:size-4 rounded-sm",
-        "icon-lg": "text-lg h-12 w-12 min-w-12 [&_svg]:size-6 rounded-xl",
+        "icon-lg": "text-lg h-12 w-12 min-w-12 [&_svg]:size-6 rounded-lg",
+        "icon-xl": "text-lg h-16 w-16 min-w-16 [&_svg]:size-6 rounded-xl",
       },
       fullRounded: {
         true: "rounded-full",

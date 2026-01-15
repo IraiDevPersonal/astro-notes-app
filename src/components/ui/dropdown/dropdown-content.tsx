@@ -49,7 +49,7 @@ export function DropdownContent({
         transformOrigin: getTransformOriginProperty(placement),
       }}
       className={cn(
-        "my-1 z-30 min-w-36 w-max transition-discrete portal-starting-style transition-[opacity,scale,display] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded-lg border border-border p-1",
+        "my-1 z-30 min-w-36 w-max transition-discrete portal-starting-style transition-[opacity,scale,display] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded-lg border border-border p-1 shadow-2xl shadow-foreground/5",
         className
       )}
     >

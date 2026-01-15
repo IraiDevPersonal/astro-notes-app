@@ -9,7 +9,6 @@ export function SearchBox() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   useClickOutside([wrapperRef], () => setIsSearchOpen(false), !isSearchOpen);
 
   const handleSearchToggleOpen = () => {
@@ -25,7 +24,7 @@ export function SearchBox() {
   return (
     <div ref={wrapperRef} className="relative">
       <Button
-        size="icon"
+        size="icon-lg"
         variant="secondary"
         onClick={handleSearchToggleOpen}
         className={cn(
@@ -46,13 +45,11 @@ export function SearchBox() {
       </Button>
 
       <div
-        className={cn(
-          "absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l bg-secondary/8 backdrop-blur-sm transition-[width,opacity]",
-          isSearchOpen && "w-72 opacity-100"
-        )}
+        data-open={isSearchOpen}
+        className="absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l bg-secondary/8 backdrop-blur-sm transition-[width,opacity] h-full data-[open=true]:w-72 data-[open=true]:opacity-100"
       >
         <input
-          className="h-9 w-full bg-transparent outline-none! ring-0! px-3 text-sm"
+          className="h-full w-full bg-transparent outline-none! ring-0! px-3 text-sm"
           placeholder="Buscar..."
           type="text"
           ref={inputRef}
