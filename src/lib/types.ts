@@ -1,4 +1,4 @@
-export type DropdownPlacement =
+export type PortalPlacement =
   | "top"
   | "top-start"
   | "top-end"
@@ -12,7 +12,7 @@ export type DropdownPlacement =
   | "right-start"
   | "right-end";
 
-export type DropdownPosition = {
+export type PortalPosition = {
   top: number;
   left: number;
   width: number;
