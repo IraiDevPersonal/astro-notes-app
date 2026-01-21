@@ -32,7 +32,7 @@ const { title, resourceCount } = Astro.props;
       className="text-xs lg:text-sm transition-[font-size]"
       muted
     >
-      {resourceCount} recursos
+      {resourceCount || "sin"} recursos
     </Typography>
   </CardBody>
 </Card>

@@ -26,12 +26,12 @@ const asLink = !!href;
   aria-label="Sidebar Menu Item"
   class:list={cn(
     !asLink && (classNames?.root ?? cls.root),
-    !asLink && isActive && (classNames?.active ?? cls.active)
+    !asLink && isActive && (classNames?.active ?? cls.active),
   )}
 >
   {
     asLink ? (
-      <NavLink href={href!} classNames={cls}>
+      <NavLink href={href!} exact classNames={cls}>
         <span class="z-20">
           <slot />
         </span>

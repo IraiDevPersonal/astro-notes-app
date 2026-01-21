@@ -18,11 +18,17 @@ const pathname = Astro.url.pathname;
     <SidebarMenuTitle>Menu</SidebarMenuTitle>
     <nav>
       <SidebarMenu>
-        <SidebarMenuItem href="/" isActive={pathname === "/"}>
-          Home
+        <SidebarMenuItem href="/home" isActive={pathname === "/home"}>
+          Inicio
         </SidebarMenuItem>
-        <SidebarMenuItem href="/about" isActive={pathname === "/about"}>
-          About
+        <SidebarMenuItem href="/my-space" isActive={pathname === "/my-space"}>
+          Mi Espacio
+        </SidebarMenuItem>
+        <SidebarMenuItem href="/shared" isActive={pathname === "/shared"}>
+          Compartidas
+        </SidebarMenuItem>
+        <SidebarMenuItem href="/favorites" isActive={pathname === "/favorites"}>
+          Favoritas
         </SidebarMenuItem>
       </SidebarMenu>
     </nav>
