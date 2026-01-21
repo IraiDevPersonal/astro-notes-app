@@ -1,20 +1,23 @@
 ---
 import FolderCard from "@/modules/folders/components/FolderCard.astro";
 import NoteCard from "@/modules/notes/components/NoteCard.astro";
+import type { ResourceModel } from "@/modules/resources/models/resource.model";
+
+type Props = {
+  resources: ResourceModel;
+};
+
+const { resources } = Astro.props;
 ---
 
-<!-- -->
 <div
   class="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] gap-3 transition-[gap] pb-8"
 >
+  {resources.folders.map((folder) => <FolderCard name={folder.name} />)}
+
   {
-    Array.from({ length: 5 }).map(() => (
-      <FolderCard>tarjeta de recurso</FolderCard>
-    ))
-  }
-  {
-    Array.from({ length: 13 }).map(() => (
-      <NoteCard>tarjeta de recurso</NoteCard>
+    resources.notes.map((note) => (
+      <NoteCard title={note.title} description={note.content} />
     ))
   }
 </div>

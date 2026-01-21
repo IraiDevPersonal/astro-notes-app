@@ -5,8 +5,11 @@ import MySpaceCard from "@/modules/my-space/components/MySpaceCard.astro";
 import MySpaceFixedResources from "@/modules/my-space/components/MySpaceFixedResources.astro";
 import MySpaceFixedResourcesHeader from "@/modules/my-space/components/MySpaceFixedResourcesHeader.astro";
 import MySpaceHeader from "@/modules/my-space/components/MySpaceHeader.astro";
-import { User, Share2 } from "lucide-react";
+import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
+import { Share2, User } from "lucide-react";
+
+const resources = await getResourcesService("pinned");
 ---
 
 <AuthLayout title="Mi Espacio">
@@ -36,7 +39,7 @@ import { CreateResourceFab } from "@/modules/resources/components/create-resourc
       <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
         <MySpaceFixedResourcesHeader />
 
-        <MySpaceFixedResources />
+        <MySpaceFixedResources resources={resources} />
       </section>
     </Main>
   </div>
