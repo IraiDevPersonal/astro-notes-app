@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import ScrollArea from "../ScrollArea.astro";
+import { ScrollArea } from "../scroll-area";
 
 type ModalBodyProps = {
   children: React.ReactNode;

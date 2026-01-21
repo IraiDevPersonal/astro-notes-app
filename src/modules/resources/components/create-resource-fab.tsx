@@ -1,53 +1,35 @@
-import { Button } from "@/components/ui/button";
 import { Fab } from "@/components/ui/fab";
-import { FilePlusCorner, FolderPlus } from "lucide-react";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useRef } from "react";
+import { CreateFolderFabItem } from "@/modules/folders/components/create-folder-fab-item";
+import { CreateFolderModal } from "@/modules/folders/components/create-folder-modal";
+import { CreateNoteFabItem } from "@/modules/notes/components/create-note-fab-item";
+import { CreateNoteModal } from "@/modules/notes/components/create-note-modal";
+import { useState } from "react";
 
 export function CreateResourceFab() {
-  const folderTriggerRef = useRef<HTMLButtonElement>(null);
-  const noteTriggerRef = useRef<HTMLButtonElement>(null);
+  const [openFab, setOpenFab] = useState(false);
+  const [openNote, setOpenNote] = useState(false);
+  const [openFolder, setOpenFolder] = useState(false);
+
   return (
     <>
-      <Fab>
-        {(onClose) => (
-          <>
-            <Tooltip
-              triggerRef={folderTriggerRef}
-              placement="left"
-              trigger={
-                <Button
-                  fullRounded
-                  size={"icon-lg"}
-                  onClick={onClose}
-                  ref={folderTriggerRef}
-                >
-                  <FolderPlus />
-                </Button>
-              }
-            >
-              Crear Carpeta
-            </Tooltip>
+      <Fab open={openFab} onOpenChange={setOpenFab}>
+        <CreateFolderFabItem
+          onClick={() => {
+            setOpenFolder(true);
+            setOpenFab(false);
+          }}
+        />
 
-            <Tooltip
-              triggerRef={noteTriggerRef}
-              placement="left"
-              trigger={
-                <Button
-                  fullRounded
-                  size={"icon-lg"}
-                  onClick={onClose}
-                  ref={noteTriggerRef}
-                >
-                  <FilePlusCorner />
-                </Button>
-              }
-            >
-              Crear Nota
-            </Tooltip>
-          </>
-        )}
+        <CreateNoteFabItem
+          onClick={() => {
+            setOpenNote(true);
+            setOpenFab(false);
+          }}
+        />
       </Fab>
+
+      <CreateFolderModal open={openFolder} onOpenChange={setOpenFolder} />
+      <CreateNoteModal open={openNote} onOpenChange={setOpenNote} />
     </>
   );
 }

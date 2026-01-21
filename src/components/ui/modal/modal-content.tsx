@@ -20,7 +20,7 @@ export function ModalContent({
   useKeyDown(
     "Escape",
     () => onOpenChange(false),
-    !open || !shouldCloseOnOverlayClick
+    !open || !shouldCloseOnOverlayClick,
   );
 
   return (
@@ -31,8 +31,8 @@ export function ModalContent({
       visible={open}
       data-open={open}
       className={cn(
-        "z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-box border border-border rounded-xl w-96 shadow-2xl transition-discrete content-starting-style transition-[opacity,scale,display] opacity-0 data-[open=true]:opacity-100 scale-95 data-[open=true]:scale-100 origin-top overflow-hidden divide-y divide-border",
-        className
+        "z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-box border border-border h-dvh md:h-auto md:rounded-xl w-full md:w-96 shadow-2xl transition-discrete content-starting-style transition-[opacity,scale,display,height,width] opacity-0 data-[open=true]:opacity-100 scale-95 data-[open=true]:scale-100 origin-top overflow-hidden divide-y divide-border",
+        className,
       )}
     >
       {children}
