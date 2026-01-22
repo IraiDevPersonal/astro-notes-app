@@ -10,7 +10,7 @@ export function ModalBody({ children, className }: ModalBodyProps) {
   return (
     <ScrollArea
       aria-label="Modal Body"
-      className={cn("p-4 flex flex-col gap-y-2", className)}
+      className={cn("p-4 flex flex-col gap-y-2 grow", className)}
     >
       {children}
     </ScrollArea>

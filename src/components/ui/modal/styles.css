@@ -5,6 +5,7 @@
 }
 
 .content-starting-style {
+  interpolate-size: allow-keywords;
   @starting-style {
     opacity: 0;
     scale: 0.95;
