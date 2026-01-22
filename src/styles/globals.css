@@ -19,7 +19,8 @@
   --success: oklch(77.648% 0.22911 145.497);
   --success-foreground: oklch(1 0 0);
   --border: oklch(0.2674 0.0047 248.0045);
-  --input: oklch(0.302 0.0288 244.8244);
+  --input: oklch(22.05% 0.012 285.41);
+  /* --input: oklch(0.302 0.0288 244.8244); */
   --ring: oklch(0.6818 0.1584 243.354);
   --font-sans: Open Sans, sans-serif;
   --font-serif: Georgia, serif;

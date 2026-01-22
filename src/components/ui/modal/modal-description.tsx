@@ -12,7 +12,7 @@ export function ModalDescription({
   return (
     <p
       aria-describedby="Modal Description"
-      className={cn("text-base text-muted-foreground", className)}
+      className={cn("text-sm text-muted-foreground", className)}
     >
       {children}
     </p>

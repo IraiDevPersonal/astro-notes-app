@@ -9,7 +9,7 @@ export function CreateNoteModal(props: CreateNoteModalProps) {
   return (
     <Modal {...props}>
       <Modal.Overlay />
-      <Modal.Content className="md:w-full md:max-w-2xl">
+      <Modal.Content>
         <Modal.Header>
           <Modal.Title>Crear Nota</Modal.Title>
         </Modal.Header>
