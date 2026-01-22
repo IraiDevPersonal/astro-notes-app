@@ -23,13 +23,14 @@ export function CreateFolderModal(props: CreateFolderModalProps) {
             Crear carpeta en&nbsp;<Chip size={"sm"}>" / "</Chip>
           </Modal.Description>
 
-          <FolderForm id="create-folder-form" />
+          <FolderForm
+            id="create-folder-form"
+            onSubmitEffect={() => props.onOpenChange(false)}
+          />
         </Modal.Body>
 
         <Modal.Footer>
-          <Modal.Close type="reset" form="create-folder-form">
-            Cancelar
-          </Modal.Close>
+          <Modal.Close>Cancelar</Modal.Close>
 
           <Button type="submit" form="create-folder-form">
             Guardar

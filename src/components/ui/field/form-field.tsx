@@ -5,6 +5,7 @@ import { Field } from "./field";
 type FormFieldProps = {
   id?: string;
   label: string;
+  error?: boolean;
   helperText?: string;
   children: React.ReactNode;
   classNames?: Partial<{
@@ -16,6 +17,7 @@ type FormFieldProps = {
 
 export function FormField({
   id,
+  error,
   label,
   children,
   helperText,
@@ -23,11 +25,11 @@ export function FormField({
 }: FormFieldProps) {
   return (
     <Field className={classNames?.root}>
-      <Label htmlFor={id} className={classNames?.label}>
+      <Label htmlFor={id} className={classNames?.label} error={error}>
         {label}
       </Label>
       {children}
-      <HelperText id={id} className={classNames?.helperText}>
+      <HelperText id={id} className={classNames?.helperText} error={error}>
         {helperText}
       </HelperText>
     </Field>

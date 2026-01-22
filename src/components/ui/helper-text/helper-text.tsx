@@ -14,9 +14,9 @@ export function HelperText({
     <output
       {...props}
       className={cn(
-        "text-xs text-muted-foreground ml-3.5 font-light",
+        "text-xs text-muted-foreground ml-auto font-light",
         error && "text-danger",
-        className
+        className,
       )}
     >
       {children}

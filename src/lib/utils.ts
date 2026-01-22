@@ -2,6 +2,10 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import type { PortalPlacement } from "./types";
 
+export function sleep(time: number = 500) {
+  return new Promise((res) => setTimeout(() => res(true), time));
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -41,7 +45,7 @@ export function getPortalTransformOrigin(placement: PortalPlacement): string {
 }
 
 export function getPortalTransformOriginProperty(
-  placement: PortalPlacement
+  placement: PortalPlacement,
 ): string {
   const originMap: Record<PortalPlacement, string> = {
     bottom: "top center",

@@ -2,24 +2,48 @@ import { FormField } from "@/components/ui/field/form-field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useId } from "react";
+import { useCreateFolder } from "../hooks/use-create-folder";
 
 type FolderFormProps = {
   id: string;
   className?: string;
+  onSubmitEffect?: () => void;
 };
 
-export function FolderForm({ className, id }: FolderFormProps) {
+export function FolderForm({ className, id, onSubmitEffect }: FolderFormProps) {
   const fieldNameId = useId();
   const fieldDescriptionId = useId();
 
+  const { errors, isError, onSubmit, register } =
+    useCreateFolder(onSubmitEffect);
+
   return (
-    <form id={id} className={className}>
-      <FormField id={fieldNameId} label="Nombre">
-        <Input id={fieldNameId} />
+    <form id={id} className={className} onSubmit={onSubmit}>
+      <FormField
+        label="Nombre"
+        id={fieldNameId}
+        error={isError("name")}
+        helperText={errors.name?.message}
+      >
+        <Input
+          autoFocus
+          id={fieldNameId}
+          {...register("name")}
+          error={isError("name")}
+        />
       </FormField>
 
-      <FormField id={fieldDescriptionId} label="Descripción">
-        <Textarea id={fieldDescriptionId} />
+      <FormField
+        label="Descripción"
+        id={fieldDescriptionId}
+        error={isError("description")}
+        helperText={errors.description?.message}
+      >
+        <Textarea
+          id={fieldDescriptionId}
+          {...register("description")}
+          error={isError("description")}
+        />
       </FormField>
     </form>
   );

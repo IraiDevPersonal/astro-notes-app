@@ -7,5 +7,5 @@ type ChipProps = {
 } & VariantProps<typeof chipVariant>;
 
 export function Chip({ variant, size, children }: ChipProps) {
-  return <div className={cn(chipVariant({ variant, size }))}>{children}</div>;
+  return <span className={cn(chipVariant({ variant, size }))}>{children}</span>;
 }
