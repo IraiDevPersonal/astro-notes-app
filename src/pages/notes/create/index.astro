@@ -1,0 +1,11 @@
+---
+import Main from "@/components/ui/Main.astro";
+import AuthLayout from "@/layouts/AuthLayout.astro";
+import { NoteForm } from "@/modules/notes/components/note-form";
+---
+
+<AuthLayout title="Crear Nota">
+  <Main className="p-8">
+    <NoteForm client:only />
+  </Main>
+</AuthLayout>

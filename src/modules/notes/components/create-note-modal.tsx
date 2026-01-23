@@ -1,4 +1,5 @@
 import { Modal } from "@/components/ui/modal";
+import { NoteForm } from "./note-form";
 
 type CreateNoteModalProps = {
   onOpenChange: (open: boolean) => void;
@@ -14,7 +15,7 @@ export function CreateNoteModal(props: CreateNoteModalProps) {
           <Modal.Title>Crear Nota</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Modal.Description>Modal para crea notas</Modal.Description>
+          <NoteForm />
         </Modal.Body>
         <Modal.Footer>
           <Modal.Close>Cerrar</Modal.Close>
