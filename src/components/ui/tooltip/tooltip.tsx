@@ -1,15 +1,14 @@
+import "./styles.css";
+import { usePortalPosition } from "@/hooks/use-portal-position";
+import type { PortalPlacement } from "@/lib/types";
 import {
   cn,
   getPortalTransformOrigin,
   getPortalTransformOriginProperty,
 } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import { Portal } from "../portal";
-import { useCallback, useEffect, useState } from "react";
-import { usePortalPosition } from "@/hooks/use-portal-position";
-import type { PortalPlacement } from "@/lib/types";
 import { getTooltipArrowClasses } from "./utils";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import "./styles.css";
 
 type TooltipProps = {
   triggerRef: React.RefObject<HTMLElement | null>;
@@ -54,7 +53,7 @@ export function Tooltip({
         }}
         className={cn(
           "z-30 w-max transition-[opacity,scale] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded border border-border px-4 py-2 shadow-xl shadow-foreground/5 tooltip-starting-style transition-discrete",
-          className
+          className,
         )}
       >
         {children}
@@ -67,15 +66,9 @@ export function Tooltip({
 function useTooltip(
   triggerRef: React.RefObject<HTMLElement | null>,
   showDelay: number,
-  hideDelay: number
+  hideDelay: number,
 ) {
   const [open, setOpen] = useState(false);
-
-  const handleMediaChange = useCallback((match: boolean) => {
-    setOpen(match);
-  }, []);
-
-  const isMobile = useMediaQuery("(width <= 48rem)", handleMediaChange, true);
 
   useEffect(() => {
     const triggerElement = triggerRef.current;
@@ -83,8 +76,6 @@ function useTooltip(
     let exitTimeout: NodeJS.Timeout;
 
     if (!triggerElement) return;
-
-    if (isMobile) return;
 
     const handleMouseEnter = () => {
       clearTimeout(exitTimeout);
@@ -102,7 +93,7 @@ function useTooltip(
       triggerElement.removeEventListener("mouseenter", handleMouseEnter);
       triggerElement.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [triggerRef, isMobile]);
+  }, [triggerRef]);
 
   return open;
 }

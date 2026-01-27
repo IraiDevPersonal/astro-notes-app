@@ -1,21 +1,10 @@
 import { useEffect } from "react";
-
-type KeyboardKey =
-  | "Enter"
-  | "Escape"
-  | "ArrowUp"
-  | "ArrowDown"
-  | "ArrowLeft"
-  | "ArrowRight"
-  | "Tab"
-  | "Backspace"
-  | " "
-  | (string & {});
+import type { KeyboardKey } from "../lib/types";
 
 export function useKeyDown(
   key: KeyboardKey,
   callback: () => void,
-  preventExecution?: boolean
+  preventExecution?: boolean,
 ) {
   useEffect(() => {
     if (preventExecution) return;

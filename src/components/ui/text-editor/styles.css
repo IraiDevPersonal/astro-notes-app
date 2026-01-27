@@ -2,6 +2,8 @@
 
 .tiptap {
   /* List styles */
+  @apply h-full overflow-auto outline-none p-3 pt-0 sm:p-5 sm:pt-0;
+  scrollbar-width: none;
   ul,
   ol {
     @apply py-0 px-8 my-2;

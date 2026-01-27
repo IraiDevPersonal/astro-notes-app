@@ -46,6 +46,7 @@ export function Button({
     <button
       disabled={disabled || undefined}
       onClick={handleClick}
+      type="button"
       className={cn(
         buttonVariant({
           fullRounded,
@@ -54,7 +55,7 @@ export function Button({
           variant,
           size,
         }),
-        className
+        className,
       )}
       {...props}
     />
