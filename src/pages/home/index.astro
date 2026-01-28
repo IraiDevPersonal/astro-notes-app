@@ -12,7 +12,7 @@ import { getMeService } from "@/modules/user/services/get-me.service";
 import { ErrorWrapper } from "@/components/ui/error-wrapper";
 
 const [meError, me] = await getMeService();
-const [resourcesError, resources] = await getResourcesService("pinned");
+const [resourcesError, resources] = await getResourcesService();
 ---
 
 <AuthLayout title="Mi Espacio">
