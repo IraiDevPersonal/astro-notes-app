@@ -5,14 +5,14 @@ import NoteCard from "@/modules/notes/components/NoteCard.astro";
 import type { ResourceModel } from "@/modules/resources/models/resource.model";
 
 type Props = {
-  resources: ResourceModel;
+  resources: ResourceModel | null;
 };
 
 const { resources } = Astro.props;
 ---
 
 {
-  resources.folders.length === 0 && resources.notes.length === 0 && (
+  resources?.folders.length === 0 && resources?.notes.length === 0 && (
     <Typography tag="p" muted className="text-center">
       No hay recursos...
     </Typography>
@@ -22,10 +22,10 @@ const { resources } = Astro.props;
 <div
   class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3 transition-[gap] pb-8"
 >
-  {resources.folders.map((folder) => <FolderCard name={folder.name} />)}
+  {resources?.folders.map((folder) => <FolderCard name={folder.name} />)}
 
   {
-    resources.notes.map((note) => (
+    resources?.notes.map((note) => (
       <NoteCard title={note.title} description={note.content} />
     ))
   }

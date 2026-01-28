@@ -1,3 +1,5 @@
-import { HttpClient } from "@/lib/http-client";
+import axios from "axios";
 
-export const noteApi = new HttpClient("http://localhost:3000/api/v1");
+export const noteApi = axios.create({
+  baseURL: "http://localhost:3000/api/v1",
+});

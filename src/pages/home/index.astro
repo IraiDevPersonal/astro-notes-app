@@ -25,13 +25,16 @@ const resources = await getResourcesService("pinned");
       <section
         class="flex items-center justify-center gap-x-3 transition-[gap]"
       >
-        <MySpaceCard title="Mi Espacio" resourceCount={me.ownerResourceCount}>
+        <MySpaceCard title="Mi Espacio" resourceCount={me?.ownerResourceCount}>
           <figure class="p-3 rounded bg-amber-500/5 text-amber-500">
             <User />
           </figure>
         </MySpaceCard>
 
-        <MySpaceCard title="Compartidas" resourceCount={me.sharedResourceCount}>
+        <MySpaceCard
+          title="Compartidas"
+          resourceCount={me?.sharedResourceCount}
+        >
           <figure class="p-3 rounded bg-purple-500/5 text-purple-500">
             <Share2 />
           </figure>
