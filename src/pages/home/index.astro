@@ -9,9 +9,10 @@ import { getResourcesService } from "@/modules/resources/services/get-resources.
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
 import { Share2, User } from "lucide-react";
 import { getMeService } from "@/modules/user/services/get-me.service";
+import { ErrorWrapper } from "@/components/ui/error-wrapper";
 
 const [meError, me] = await getMeService();
-const [error, resources] = await getResourcesService("pinned");
+const [resourcesError, resources] = await getResourcesService("pinned");
 ---
 
 <AuthLayout title="Mi Espacio">
@@ -47,7 +48,9 @@ const [error, resources] = await getResourcesService("pinned");
       <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
         <MySpaceFixedResourcesHeader />
 
-        <MySpaceFixedResources resources={resources?.data ?? null} />
+        <ErrorWrapper error={resourcesError}>
+          <MySpaceFixedResources resources={resources?.data ?? null} />
+        </ErrorWrapper>
       </section>
     </Main>
   </div>

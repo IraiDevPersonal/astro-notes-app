@@ -1,16 +1,13 @@
----
 import { cn } from "@/lib/utils";
-import type { Polymorphic } from "astro/types";
+import { CreateElement } from "./create-element";
 
 type Tag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small";
 
-type Props<T extends Tag = Tag> = {
+type TypographyProps<T extends Tag = Tag> = React.ComponentPropsWithRef<T> & {
   className?: string;
   muted?: boolean;
-  tag?: T;
-} & Omit<Polymorphic<{ as: T }>, "class">;
-
-const { muted, tag: Component = "p", className, ...props } = Astro.props;
+  as?: T;
+};
 
 const classNames: Record<Tag, string> = {
   h1: "text-4xl font-bold leading-tight",
@@ -22,11 +19,25 @@ const classNames: Record<Tag, string> = {
   p: "text-base font-normal leading-relaxed",
   small: "text-sm font-normal leading-relaxed",
 };
----
 
-<Component
-  class={cn(classNames[Component], muted && "text-muted-foreground", className)}
-  {...props}
->
-  <slot />
-</Component>
+export function Typography<T extends Tag = Tag>({
+  className,
+  children,
+  muted,
+  as,
+  ...props
+}: TypographyProps<T>) {
+  return (
+    <CreateElement
+      as={as ?? "p"}
+      class={cn(
+        classNames[as ?? "p"],
+        muted && "text-muted-foreground",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </CreateElement>
+  );
+}

@@ -2,7 +2,7 @@
 import Card from "@/components/ui/card/Card.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
-import Typography from "@/components/ui/Typography.astro";
+import { Typography } from "@/components/ui/typography";
 import { Folder } from "lucide-react";
 
 type Props = {
@@ -20,7 +20,7 @@ const { name } = Astro.props;
   </CardHeader>
   <CardBody>
     <Typography
-      tag="h6"
+      as="h6"
       className="text-sm transition-[font-size] text-center capitalize"
     >
       {name}

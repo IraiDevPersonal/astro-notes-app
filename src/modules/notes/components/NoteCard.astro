@@ -2,7 +2,7 @@
 import Card from "@/components/ui/card/Card.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
-import Typography from "@/components/ui/Typography.astro";
+import { Typography } from "@/components/ui/typography";
 import { NoteCardDropdown } from "./note-card-dropdown";
 
 type Props = {
@@ -16,7 +16,7 @@ const { title, description } = Astro.props;
 <Card className="gap-2 group relative aspect-square">
   <CardHeader className="shrink-0 justify-between">
     <Typography
-      tag="h6"
+      as="h6"
       className="text-sm transition-[font-size] truncate"
       title={title}
     >
@@ -29,7 +29,7 @@ const { title, description } = Astro.props;
   <CardBody className="flex-1 min-h-0">
     <Typography
       muted
-      tag="p"
+      as="p"
       className="text-xs md:text-sm transition-[font-size] line-clamp-7 card-description"
     >
       {description}

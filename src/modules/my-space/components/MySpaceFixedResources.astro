@@ -1,5 +1,5 @@
 ---
-import Typography from "@/components/ui/Typography.astro";
+import { Typography } from "@/components/ui/typography";
 import FolderCard from "@/modules/folders/components/FolderCard.astro";
 import NoteCard from "@/modules/notes/components/NoteCard.astro";
 import type { ResourceModel } from "@/modules/resources/models/resource.model";
@@ -13,7 +13,7 @@ const { resources } = Astro.props;
 
 {
   resources?.folders.length === 0 && resources?.notes.length === 0 && (
-    <Typography tag="p" muted className="text-center">
+    <Typography as="p" muted className="text-center">
       No hay recursos...
     </Typography>
   )

@@ -2,7 +2,7 @@
 import Card from "@/components/ui/card/Card.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
-import Typography from "@/components/ui/Typography.astro";
+import { Typography } from "@/components/ui/typography";
 
 type Props = {
   title: string;
@@ -22,13 +22,13 @@ const { title, resourceCount } = Astro.props;
   </CardHeader>
   <CardBody className="gap-y-0">
     <Typography
-      tag="h5"
+      as="h5"
       className="truncate text-base lg:text-lg transition-[font-size]"
     >
       {title}
     </Typography>
     <Typography
-      tag="small"
+      as="small"
       className="text-xs lg:text-sm transition-[font-size]"
       muted
     >

@@ -6,14 +6,14 @@ import axios, {
 } from "axios";
 
 export class HttpClient {
-  private readonly instance: AxiosInstance;
+  private readonly client: AxiosInstance;
 
   constructor(options?: CreateAxiosDefaults) {
-    this.instance = axios.create(options);
+    this.client = axios.create(options);
   }
 
   public get = async <T>(endpoint: string, options?: AxiosRequestConfig) => {
-    return await this.safeRequest(this.instance.get<T>(endpoint, options));
+    return await this.safeRequest(this.client.get<T>(endpoint, options));
   };
 
   public post = async <T>(
@@ -21,9 +21,7 @@ export class HttpClient {
     data: unknown,
     options?: AxiosRequestConfig,
   ) => {
-    return await this.safeRequest(
-      this.instance.post<T>(endpoint, data, options),
-    );
+    return await this.safeRequest(this.client.post<T>(endpoint, data, options));
   };
 
   public put = async <T>(
@@ -31,9 +29,7 @@ export class HttpClient {
     data: unknown,
     options?: AxiosRequestConfig,
   ) => {
-    return await this.safeRequest(
-      this.instance.put<T>(endpoint, data, options),
-    );
+    return await this.safeRequest(this.client.put<T>(endpoint, data, options));
   };
 
   public patch = async <T>(
@@ -42,31 +38,31 @@ export class HttpClient {
     options?: AxiosRequestConfig,
   ) => {
     return await this.safeRequest(
-      this.instance.patch<T>(endpoint, data, options),
+      this.client.patch<T>(endpoint, data, options),
     );
   };
 
   public delete = async <T>(endpoint: string, options?: AxiosRequestConfig) => {
-    return await this.safeRequest(this.instance.delete<T>(endpoint, options));
+    return await this.safeRequest(this.client.delete<T>(endpoint, options));
   };
 
   private safeRequest = async <T>(
     promise: Promise<AxiosResponse<T>>,
-  ): Promise<[erro: string | null, data: T | null]> => {
+  ): Promise<[error: string | null, data: T | null]> => {
     try {
       const { data } = await promise;
       return [null, data] as const;
     } catch (error) {
       let errorMessage = "Error no controlado";
 
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
       if (axios.isAxiosError<{ error: string }>(error)) {
         if (error.response) {
           errorMessage = error.response.data.error;
         }
-      }
-
-      if (error instanceof Error) {
-        errorMessage = error.message;
       }
 
       return [errorMessage, null] as const;
