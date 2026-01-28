@@ -1,5 +1,8 @@
 import { Modal } from "@/components/ui/modal";
 import { NoteForm } from "./note-form";
+import { Button } from "@/components/ui/button";
+import { Save } from "lucide-react";
+import { Chip } from "@/components/ui/chip";
 
 type CreateNoteModalProps = {
   onOpenChange: (open: boolean) => void;
@@ -14,11 +17,18 @@ export function CreateNoteModal(props: CreateNoteModalProps) {
         <Modal.Header>
           <Modal.Title>Crear Nota</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="h-[calc(100dvh-10rem)]">
+          <Modal.Description className="flex items-center">
+            Crear nota en&nbsp;<Chip size={"sm"}>" / "</Chip>
+          </Modal.Description>
           <NoteForm />
         </Modal.Body>
         <Modal.Footer>
-          <Modal.Close>Cerrar</Modal.Close>
+          <Modal.Close>Cancelar</Modal.Close>
+          <Button>
+            Guardar
+            <Save />
+          </Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>

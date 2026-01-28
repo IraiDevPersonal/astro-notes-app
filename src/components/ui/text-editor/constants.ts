@@ -75,16 +75,28 @@ const CustomTextAlign = TextAlign.extend({
   types: ["heading", "paragraph"],
 });
 
+const CustomBold = Bold.configure({
+  HTMLAttributes: {
+    class: "font-extrabold",
+  },
+});
+
+const CustomParagraph = Paragraph.configure({
+  HTMLAttributes: {
+    class: "font-light",
+  },
+});
+
 export const EXTENSIONS: Extensions = [
   Text,
-  Bold,
   Italic,
   Heading,
   UndoRedo,
   Document,
   ListItem,
-  Paragraph,
+  CustomBold,
   CustomStrike,
+  CustomParagraph,
   CustomTextAlign,
   CustomBulletList,
   CustomOrderedList,

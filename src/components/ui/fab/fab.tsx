@@ -1,19 +1,21 @@
+import "./styles.css";
 import { ChevronUp, Plus, X } from "lucide-react";
 import { Button, type ButtonProps } from "../button";
 import { useCallback, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { cn } from "@/lib/utils";
 import { Portal } from "../portal";
-import "./styles.css";
 
 type FabProps = {
   onOpenChange?: (value: boolean) => void;
   trigger?: React.ReactNode;
+  className?: string;
   open?: boolean;
 } & ButtonProps;
 
 export function Fab({
   onOpenChange,
+  className,
   children,
   trigger,
   open,
@@ -68,7 +70,8 @@ export function Fab({
         visible={open ?? isOpen}
         ref={portalRef}
         className={cn(
-          "absolute bottom-full left-0 z-30 w-full h-max transition-discrete fab-starting-style transition-[opacity,scale] data-[open=true]:scale-100 scale-90 data-[open=true]:opacity-100 opacity-0 pb-2 flex flex-col items-center gap-y-1 origin-bottom",
+          "absolute bottom-full right-0 z-30 w-max h-max transition-discrete fab-starting-style transition-[opacity,scale] data-[open=true]:scale-100 scale-90 data-[open=true]:opacity-100 opacity-0 pb-2 flex flex-col items-end gap-y-2 origin-bottom",
+          className,
         )}
       >
         {children}

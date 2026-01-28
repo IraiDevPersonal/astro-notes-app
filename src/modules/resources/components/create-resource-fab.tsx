@@ -1,8 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { Fab } from "@/components/ui/fab";
-import { CreateFolderFabItem } from "@/modules/folders/components/create-folder-fab-item";
 import { CreateFolderModal } from "@/modules/folders/components/create-folder-modal";
-import { CreateNoteFabItem } from "@/modules/notes/components/create-note-fab-item";
 import { CreateNoteModal } from "@/modules/notes/components/create-note-modal";
+import { Folder, StickyNote } from "lucide-react";
 import { useState } from "react";
 
 export function CreateResourceFab() {
@@ -13,19 +13,29 @@ export function CreateResourceFab() {
   return (
     <>
       <Fab open={openFab} onOpenChange={setOpenFab}>
-        <CreateFolderFabItem
+        <Button
+          size={"lg"}
+          variant={"secondary"}
           onClick={() => {
             setOpenFolder(true);
             setOpenFab(false);
           }}
-        />
+        >
+          Crear Carpeta
+          <Folder />
+        </Button>
 
-        <CreateNoteFabItem
+        <Button
+          size={"lg"}
+          variant={"secondary"}
           onClick={() => {
             setOpenNote(true);
             setOpenFab(false);
           }}
-        />
+        >
+          Crear Nota
+          <StickyNote />
+        </Button>
       </Fab>
 
       <CreateFolderModal open={openFolder} onOpenChange={setOpenFolder} />
