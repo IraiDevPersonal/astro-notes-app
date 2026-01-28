@@ -52,7 +52,7 @@ export function Tooltip({
           transformOrigin: getPortalTransformOriginProperty(placement),
         }}
         className={cn(
-          "z-30 w-max transition-[opacity,scale] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-box rounded border border-border px-4 py-2 shadow-xl shadow-foreground/5 tooltip-starting-style transition-discrete",
+          "z-30 w-max transition-[opacity,scale] data-[open=true]:scale-100 scale-95 data-[open=true]:opacity-100 opacity-0 bg-background rounded border border-border px-4 py-2 tooltip-starting-style transition-discrete",
           className,
         )}
       >

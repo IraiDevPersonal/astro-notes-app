@@ -27,8 +27,8 @@ export function Input({
           disabled,
           error,
         }),
-        "h-9",
-        className
+        "h-11",
+        className,
       )}
       {...props}
     />

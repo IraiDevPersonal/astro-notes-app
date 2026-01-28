@@ -34,8 +34,8 @@ export function Select({
           disabled,
           error,
         }),
-        "h-9 relative p-2 text-sm flex items-center",
-        className
+        "h-11 relative p-2 text-sm flex items-center",
+        className,
       )}
       disabled={disabled || undefined}
     >
