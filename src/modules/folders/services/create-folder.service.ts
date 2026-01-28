@@ -3,10 +3,5 @@ import type { CreateFolderModel } from "../models/upsert-folder.model";
 import type { FolderModel } from "../models/folder.model";
 
 export async function createFolderService(folder: CreateFolderModel) {
-  const { data } = await noteApi.post<{ data: FolderModel }>(
-    "/folders",
-    folder,
-  );
-
-  return data;
+  return await noteApi.post<{ data: FolderModel }>("/folders", folder);
 }

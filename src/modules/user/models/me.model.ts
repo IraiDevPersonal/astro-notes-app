@@ -1,4 +1,4 @@
-export interface MeModel {
+export type MeModel = {
   id: string;
   name: string;
   email: string;
@@ -7,4 +7,8 @@ export interface MeModel {
   createdAt: string;
   ownerResourceCount: number;
   sharedResourceCount: number;
-}
+};
+
+export type MeResponse = {
+  data: MeModel;
+};

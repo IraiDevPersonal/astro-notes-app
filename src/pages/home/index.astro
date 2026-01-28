@@ -10,8 +10,8 @@ import { CreateResourceFab } from "@/modules/resources/components/create-resourc
 import { Share2, User } from "lucide-react";
 import { getMeService } from "@/modules/user/services/get-me.service";
 
-const me = await getMeService();
-const resources = await getResourcesService("pinned");
+const [meError, me] = await getMeService();
+const [error, resources] = await getResourcesService("pinned");
 ---
 
 <AuthLayout title="Mi Espacio">
@@ -25,7 +25,10 @@ const resources = await getResourcesService("pinned");
       <section
         class="flex items-center justify-center gap-x-3 transition-[gap]"
       >
-        <MySpaceCard title="Mi Espacio" resourceCount={me?.ownerResourceCount}>
+        <MySpaceCard
+          title="Mi Espacio"
+          resourceCount={me?.data.ownerResourceCount}
+        >
           <figure class="p-3 rounded bg-amber-500/5 text-amber-500">
             <User />
           </figure>
@@ -33,7 +36,7 @@ const resources = await getResourcesService("pinned");
 
         <MySpaceCard
           title="Compartidas"
-          resourceCount={me?.sharedResourceCount}
+          resourceCount={me?.data.sharedResourceCount}
         >
           <figure class="p-3 rounded bg-purple-500/5 text-purple-500">
             <Share2 />
@@ -44,7 +47,7 @@ const resources = await getResourcesService("pinned");
       <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
         <MySpaceFixedResourcesHeader />
 
-        <MySpaceFixedResources resources={resources} />
+        <MySpaceFixedResources resources={resources?.data ?? null} />
       </section>
     </Main>
   </div>
