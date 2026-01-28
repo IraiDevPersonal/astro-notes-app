@@ -83,7 +83,7 @@ const CustomBold = Bold.configure({
 
 const CustomParagraph = Paragraph.configure({
   HTMLAttributes: {
-    class: "font-light",
+    class: "font-normal",
   },
 });
 
