@@ -1,0 +1,22 @@
+---
+import { Menu } from "lucide-react";
+import Header from "./Header.astro";
+import SidebarTrigger from "./sidebar/SidebarTrigger.astro";
+import { Typography } from "./typography";
+import { SearchBox } from "./search-box";
+---
+
+<Header>
+  <SidebarTrigger variant="secondary" size={"icon-lg"}>
+    <Menu />
+  </SidebarTrigger>
+
+  <Typography
+    as="h1"
+    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl truncate max-w-sm md:max-w-md lg:max-w-full"
+  >
+    <slot />
+  </Typography>
+
+  <SearchBox client:visible />
+</Header>

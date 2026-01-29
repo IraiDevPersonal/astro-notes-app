@@ -4,8 +4,15 @@ import { Typography } from "@/components/ui/typography";
 import FolderCard from "@/modules/folders/components/FolderCard.astro";
 import NoteCard from "@/modules/notes/components/NoteCard.astro";
 import { getResourcesService } from "@/modules/resources/services/get-resources.service";
+import type { ResourceType } from "../models/resource-type.model";
 
-const [error, data] = await getResourcesService();
+type Props = {
+  resoureType?: ResourceType;
+};
+
+const { resoureType } = Astro.props;
+
+const [error, data] = await getResourcesService(resoureType);
 const resources = data?.data;
 const folders = resources?.folders ?? [];
 const notes = resources?.notes ?? [];

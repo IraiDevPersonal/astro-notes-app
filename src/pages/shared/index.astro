@@ -1,5 +1,17 @@
 ---
 import AuthLayout from "@/components/layouts/AuthLayout.astro";
+import Main from "@/components/ui/Main.astro";
+import PageContent from "@/components/ui/PageContent.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 ---
 
-<AuthLayout title="Compartidas"> Compartidas </AuthLayout>
+<AuthLayout title="Compartidas">
+  <PageContent>
+    <PageHeader> Compartidas </PageHeader>
+
+    <Main>
+      <ResourceGrid resoureType="shared" />
+    </Main>
+  </PageContent>
+</AuthLayout>

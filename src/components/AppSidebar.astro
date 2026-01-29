@@ -1,11 +1,11 @@
 ---
+import { LayoutDashboard, Share2, User } from "lucide-react";
 import Sidebar from "./ui/sidebar/Sidebar.astro";
 import SidebarContent from "./ui/sidebar/SidebarContent.astro";
 import SidebarFooter from "./ui/sidebar/SidebarFooter.astro";
 import SidebarHeader from "./ui/sidebar/SidebarHeader.astro";
 import SidebarMenu from "./ui/sidebar/SidebarMenu.astro";
 import SidebarMenuItem from "./ui/sidebar/SidebarMenuItem.astro";
-import SidebarMenuTitle from "./ui/sidebar/SidebarMenuTitle.astro";
 
 const pathname = Astro.url.pathname;
 ---
@@ -15,20 +15,19 @@ const pathname = Astro.url.pathname;
     <span>Notes App</span>
   </SidebarHeader>
   <SidebarContent>
-    <SidebarMenuTitle>Menu</SidebarMenuTitle>
     <nav>
       <SidebarMenu>
         <SidebarMenuItem href="/dashboard" isActive={pathname === "/dashboard"}>
-          Inicio
+          <LayoutDashboard />
+          Dashboard
         </SidebarMenuItem>
         <SidebarMenuItem href="/my-space" isActive={pathname === "/my-space"}>
+          <User />
           Mi Espacio
         </SidebarMenuItem>
         <SidebarMenuItem href="/shared" isActive={pathname === "/shared"}>
+          <Share2 />
           Compartidas
-        </SidebarMenuItem>
-        <SidebarMenuItem href="/favorites" isActive={pathname === "/favorites"}>
-          Favoritas
         </SidebarMenuItem>
       </SidebarMenu>
     </nav>

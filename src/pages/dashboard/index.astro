@@ -1,27 +1,25 @@
 ---
 import AuthLayout from "@/components/layouts/AuthLayout.astro";
 import Main from "@/components/ui/Main.astro";
+import PageContent from "@/components/ui/PageContent.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
 import DashboardCard from "@/modules/dashboard/components/DashboardCard.astro";
-import DashboardFixedResources from "@/modules/dashboard/components/DashboardFixedResources.astro";
-import DashboardFixedResourcesHeader from "@/modules/dashboard/components/DashboardFixedResourcesHeader.astro";
-import DashboardHeader from "@/modules/dashboard/components/DashboardHeader.astro";
+import DashboardPinnedResourcesHeader from "@/modules/dashboard/components/DashboardPinnedResourcesHeader.astro";
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
+import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 import { getMeService } from "@/modules/user/services/get-me.service";
 import { Share2, User } from "lucide-react";
 
-const [error, data] = await getMeService();
+const [_, data] = await getMeService();
 const me = data?.data;
 ---
 
 <AuthLayout title="Mi Espacio">
   <CreateResourceFab client:visible />
-  <div
-    class="flex flex-col gap-y-8 p-4 md:p-6 lg:p-8 w-full transition-[padding]"
-  >
-    <DashboardHeader
-      user={{ name: me?.name, lastName: me?.lastName }}
-      error={error}
-    />
+  <PageContent>
+    <PageHeader>
+      Bienvenido, {me?.name}&nbsp;{me?.lastName}
+    </PageHeader>
 
     <Main>
       <section
@@ -49,10 +47,10 @@ const me = data?.data;
       </section>
 
       <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
-        <DashboardFixedResourcesHeader />
+        <DashboardPinnedResourcesHeader />
 
-        <DashboardFixedResources />
+        <ResourceGrid resoureType="pinned" />
       </section>
     </Main>
-  </div>
+  </PageContent>
 </AuthLayout>

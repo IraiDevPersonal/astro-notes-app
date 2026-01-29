@@ -1,5 +1,17 @@
 ---
 import AuthLayout from "@/components/layouts/AuthLayout.astro";
+import Main from "@/components/ui/Main.astro";
+import PageContent from "@/components/ui/PageContent.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 ---
 
-<AuthLayout title="Mi Espacio"> Mi espacio </AuthLayout>
+<AuthLayout title="Mi Espacio">
+  <PageContent>
+    <PageHeader> Mi Espacio </PageHeader>
+
+    <Main>
+      <ResourceGrid />
+    </Main>
+  </PageContent>
+</AuthLayout>
