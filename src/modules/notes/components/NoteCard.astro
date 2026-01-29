@@ -3,36 +3,32 @@ import Card from "@/components/ui/card/Card.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
 import { Typography } from "@/components/ui/typography";
+import { StickyNote } from "lucide-react";
 import { NoteCardDropdown } from "./note-card-dropdown";
+import CardAction from "@/components/ui/card/CardAction.astro";
 
 type Props = {
   title: string;
-  description: string;
 };
 
-const { title, description } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<Card className="gap-2 group relative aspect-square">
-  <CardHeader className="shrink-0 justify-between">
+<Card className="gap-2 justify-center items-center aspect-square relative">
+  <CardHeader>
+    <StickyNote
+      className="size-10 text-muted-foreground transition-[width,height]"
+    />
+  </CardHeader>
+  <CardBody>
     <Typography
       as="h6"
-      className="text-sm transition-[font-size] truncate"
-      title={title}
+      className="text-sm transition-[font-size] text-center capitalize"
     >
       {title}
     </Typography>
-
-    <NoteCardDropdown client:visible />
-  </CardHeader>
-
-  <CardBody className="flex-1 min-h-0">
-    <Typography
-      muted
-      as="p"
-      className="text-xs md:text-sm transition-[font-size] line-clamp-7 card-description"
-    >
-      {description}
-    </Typography>
   </CardBody>
+  <CardAction className="absolute top-3 right-3">
+    <NoteCardDropdown client:visible />
+  </CardAction>
 </Card>

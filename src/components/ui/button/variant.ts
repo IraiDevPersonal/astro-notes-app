@@ -12,12 +12,14 @@ export const buttonVariant = cva(
           "text-secondary bg-secondary/8 not-disabled:hover:bg-secondary/15 focus-visible:outline-secondary",
         danger:
           "text-danger-foreground bg-danger not-disabled:hover:bg-danger/80 focus-visible:outline-danger",
+        "fab-item":
+          "text-secondary bg-secondary/8 not-disabled:hover:bg-secondary/15 focus-visible:outline-secondary border border-border shadow-xl shadow-foreground/5",
       },
       size: {
         default: "text-sm px-3 h-9 [&_svg]:size-4 rounded",
         sm: "text-xs px-2 h-8 [&_svg]:size-4 rounded-sm",
-        lg: "text-lg px-3.5 h-12 [&_svg]:size-6 rounded-lg",
-        xl: "text-xl px-5 h-14 [&_svg]:size-6 rounded-xl",
+        lg: "text-lg px-3.5 h-11 [&_svg]:size-6 rounded",
+        xl: "text-xl px-5 h-14 [&_svg]:size-6 rounded-lg",
         icon: "text-sm h-9 w-9 min-w-9 [&_svg]:size-4 rounded",
         "icon-xs": "text-xs h-6.5 w-6.5 min-w-6.5 [&_svg]:size-3.5 rounded-sm",
         "icon-sm": "text-base h-8 w-8 min-w-8 [&_svg]:size-4 rounded-sm",

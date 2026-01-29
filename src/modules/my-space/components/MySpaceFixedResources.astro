@@ -24,9 +24,5 @@ const { resources } = Astro.props;
 >
   {resources?.folders.map((folder) => <FolderCard name={folder.name} />)}
 
-  {
-    resources?.notes.map((note) => (
-      <NoteCard title={note.title} description={note.content} />
-    ))
-  }
+  {resources?.notes.map((note) => <NoteCard title={note.title} />)}
 </div>

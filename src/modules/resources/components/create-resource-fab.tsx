@@ -15,7 +15,7 @@ export function CreateResourceFab() {
       <Fab open={openFab} onOpenChange={setOpenFab}>
         <Button
           size={"lg"}
-          variant={"secondary"}
+          variant={"fab-item"}
           onClick={() => {
             setOpenFolder(true);
             setOpenFab(false);
@@ -27,7 +27,7 @@ export function CreateResourceFab() {
 
         <Button
           size={"lg"}
-          variant={"secondary"}
+          variant={"fab-item"}
           onClick={() => {
             setOpenNote(true);
             setOpenFab(false);

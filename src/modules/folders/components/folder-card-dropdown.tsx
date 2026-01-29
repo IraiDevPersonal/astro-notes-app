@@ -1,7 +1,7 @@
 import { Dropdown } from "@/components/ui/dropdown";
 import { EllipsisVertical, Link, Pin, Star, Trash } from "lucide-react";
 
-export function NoteCardDropdown() {
+export function FolderCardDropdown() {
   return (
     <Dropdown>
       <Dropdown.Trigger size="icon-xs" variant={"text"}>

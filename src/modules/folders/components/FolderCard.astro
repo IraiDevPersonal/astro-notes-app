@@ -1,9 +1,11 @@
 ---
 import Card from "@/components/ui/card/Card.astro";
+import CardAction from "@/components/ui/card/CardAction.astro";
 import CardBody from "@/components/ui/card/CardBody.astro";
 import CardHeader from "@/components/ui/card/CardHeader.astro";
 import { Typography } from "@/components/ui/typography";
 import { Folder } from "lucide-react";
+import { FolderCardDropdown } from "./folder-card-dropdown";
 
 type Props = {
   name: string;
@@ -12,7 +14,7 @@ type Props = {
 const { name } = Astro.props;
 ---
 
-<Card className="gap-2 justify-center items-center aspect-square">
+<Card className="gap-2 justify-center items-center aspect-square relative">
   <CardHeader>
     <Folder
       className="size-10 text-muted-foreground fill-muted-foreground transition-[width,height]"
@@ -26,4 +28,7 @@ const { name } = Astro.props;
       {name}
     </Typography>
   </CardBody>
+  <CardAction className="absolute top-3 right-3">
+    <FolderCardDropdown client:visible />
+  </CardAction>
 </Card>

@@ -3,7 +3,7 @@ import { useDropdownContext } from "./dropdown-context";
 
 type DropdownTriggerProps = {
   children: React.ReactNode;
-} & Pick<ButtonProps, "onClick" | "variant" | "size">;
+} & Pick<ButtonProps, "onClick" | "variant" | "size" | "className">;
 
 export function DropdownTrigger({ onClick, ...props }: DropdownTriggerProps) {
   const { onOpenChange: setOpen, triggerRef } = useDropdownContext();
