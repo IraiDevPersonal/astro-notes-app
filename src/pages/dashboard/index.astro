@@ -28,6 +28,7 @@ const me = data?.data;
         class="flex items-center justify-center gap-x-3 transition-[gap]"
       >
         <DashboardCard
+          href="/my-space"
           title="Mi Espacio"
           resourceCount={me?.ownerResourceCount}
         >
@@ -37,6 +38,7 @@ const me = data?.data;
         </DashboardCard>
 
         <DashboardCard
+          href="/shared"
           title="Compartidas"
           resourceCount={me?.sharedResourceCount}
         >
