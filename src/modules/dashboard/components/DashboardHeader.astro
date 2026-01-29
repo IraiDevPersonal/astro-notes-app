@@ -4,6 +4,15 @@ import { SearchBox } from "@/components/ui/search-box/search-box";
 import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.astro";
 import { Typography } from "@/components/ui/typography";
 import { Menu } from "lucide-react";
+
+type Props = {
+  user: {
+    name?: string;
+    lastName?: string;
+  };
+};
+
+const { user } = Astro.props;
 ---
 
 <Header>
@@ -13,9 +22,9 @@ import { Menu } from "lucide-react";
 
   <Typography
     as="h1"
-    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl"
+    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl truncate max-w-sm md:max-w-md lg:max-w-full"
   >
-    Mi Espacio
+    Bienvenido, {user?.name}&nbsp;{user?.lastName}
   </Typography>
 
   <SearchBox client:visible />

@@ -1,10 +1,10 @@
 ---
 import Main from "@/components/ui/Main.astro";
 import AuthLayout from "@/components/layouts/AuthLayout.astro";
-import MySpaceCard from "@/modules/my-space/components/MySpaceCard.astro";
-import MySpaceFixedResources from "@/modules/my-space/components/MySpaceFixedResources.astro";
-import MySpaceFixedResourcesHeader from "@/modules/my-space/components/MySpaceFixedResourcesHeader.astro";
-import MySpaceHeader from "@/modules/my-space/components/MySpaceHeader.astro";
+import MySpaceCard from "@/modules/dashboard/components/DashboardCard.astro";
+import MySpaceFixedResources from "@/modules/dashboard/components/DashboardFixedResources.astro";
+import MySpaceFixedResourcesHeader from "@/modules/dashboard/components/DashboardFixedResourcesHeader.astro";
+import MySpaceHeader from "@/modules/dashboard/components/DashboardHeader.astro";
 import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
 import { Share2, User } from "lucide-react";
@@ -20,7 +20,9 @@ const [resourcesError, resources] = await getResourcesService();
   <div
     class="flex flex-col gap-y-8 p-4 md:p-6 lg:p-8 w-full transition-[padding]"
   >
-    <MySpaceHeader />
+    <MySpaceHeader
+      user={{ name: me?.data.name, lastName: me?.data.lastName }}
+    />
 
     <Main>
       <section
@@ -49,7 +51,7 @@ const [resourcesError, resources] = await getResourcesService();
         <MySpaceFixedResourcesHeader />
 
         <ErrorWrapper error={resourcesError}>
-          <MySpaceFixedResources resources={resources?.data ?? null} />
+          <MySpaceFixedResources resources={resources!.data} />
         </ErrorWrapper>
       </section>
     </Main>
