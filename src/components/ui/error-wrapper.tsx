@@ -3,7 +3,7 @@ import { Typography } from "./typography";
 
 type ErrorWrapperProps = {
   children: React.ReactNode;
-  error: string | null;
+  error?: string | null;
   className?: string;
 };
 
@@ -14,11 +14,9 @@ export function ErrorWrapper({
 }: ErrorWrapperProps) {
   if (error) {
     return (
-      <div>
-        <Typography className={cn("text-danger text-center", className)}>
-          {error}
-        </Typography>
-      </div>
+      <Typography as="p" className={cn("text-danger text-center", className)}>
+        {error}
+      </Typography>
     );
   }
 
