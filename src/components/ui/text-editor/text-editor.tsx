@@ -5,14 +5,25 @@ import { TextEditorToolbar } from "./text-editor-toolbar";
 import { cn } from "@/lib/utils";
 
 type TextEditorProps = {
+  onValueChange: (value: string) => void;
   autoFocus?: boolean;
   className?: string;
+  value: string;
 };
 
-export function TextEditor({ autoFocus = false, className }: TextEditorProps) {
+export function TextEditor({
+  autoFocus = false,
+  className,
+  value,
+  onValueChange,
+}: TextEditorProps) {
   const editor = useEditor({
     extensions: EXTENSIONS,
     autofocus: autoFocus,
+    content: value,
+    onUpdate: ({ editor }) => {
+      onValueChange(editor.getHTML());
+    },
   });
 
   return (
