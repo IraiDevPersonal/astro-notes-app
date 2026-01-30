@@ -1,14 +1,18 @@
 import { Dropdown } from "@/components/ui/dropdown";
 import { EllipsisVertical, Link, Pin, Star, Trash } from "lucide-react";
 
-export function NoteCardDropdown() {
+type NoteCardDropdownProps = {
+  id: string;
+};
+
+export function NoteCardDropdown({ id }: NoteCardDropdownProps) {
   return (
     <Dropdown>
       <Dropdown.Trigger size="icon-xs" variant={"text"}>
         <EllipsisVertical />
       </Dropdown.Trigger>
       <Dropdown.Content placement="bottom-end" className="w-40">
-        <Dropdown.Item>
+        <Dropdown.Item href={`/notes/${id}`}>
           <Link /> Ir
         </Dropdown.Item>
         {/* <Dropdown.Divider /> */}
