@@ -1,4 +1,4 @@
-export type FolderModel = {
+export type SubFolderModel = {
   id: string;
   name: string;
   order: number;
@@ -11,6 +11,6 @@ export type FolderModel = {
   };
   sharedWith: {
     count: number;
-    users: [];
+    users: any[];
   };
 };

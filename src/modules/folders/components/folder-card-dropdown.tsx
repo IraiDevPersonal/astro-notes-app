@@ -12,7 +12,7 @@ export function FolderCardDropdown({ id }: FolderCardDropdownProps) {
         <EllipsisVertical />
       </Dropdown.Trigger>
       <Dropdown.Content placement="bottom-end" className="w-40">
-        <Dropdown.Item href={`/folders/${id}`}>
+        <Dropdown.Item href={`/folder/${id}`}>
           <Link /> Ir
         </Dropdown.Item>
         {/* <Dropdown.Divider /> */}

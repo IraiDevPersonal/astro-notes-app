@@ -6,15 +6,15 @@ import PageHeader from "@/components/ui/PageHeader.astro";
 import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 
-const [error, data] = await getResourcesService("shared");
+const [error, data] = await getResourcesService();
 
 const folders = data?.data?.folders ?? [];
 const notes = data?.data?.notes ?? [];
 ---
 
-<AuthLayout title="Compartidas">
+<AuthLayout title="Mi Espacio">
   <PageContent>
-    <PageHeader> Compartidas </PageHeader>
+    <PageHeader> Carpeta </PageHeader>
 
     <Main>
       <ResourceGrid folders={folders} notes={notes} error={error} />
