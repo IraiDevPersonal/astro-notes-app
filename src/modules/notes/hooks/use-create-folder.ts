@@ -3,7 +3,7 @@ import type { CreateNoteModel } from "../models/upsert-note.model";
 import { createNoteService } from "../services/upsert-note.service";
 import { createNoteSchema } from "../schemas/upsert-note.schema";
 
-export function useCreateNote(onSubmitEffect?: () => void) {
+export function useCreateNote(onSubmitEffect?: () => void, folderId?: string) {
   const {
     isError,
     register,
@@ -20,7 +20,7 @@ export function useCreateNote(onSubmitEffect?: () => void) {
 
   const onSubmit = handleSubmit(async (values: CreateNoteModel) => {
     try {
-      await createNoteService(values);
+      await createNoteService({ ...values, folderId });
       onSubmitEffect?.();
       window.location.reload();
     } catch (error) {

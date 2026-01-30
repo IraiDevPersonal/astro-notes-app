@@ -7,14 +7,17 @@ import { Controller } from "react-hook-form";
 
 type NoteFormProps = {
   id?: string;
+  folderId?: string;
   onSubmitEffect?: () => void;
 };
 
-export function NoteForm({ onSubmitEffect, id }: NoteFormProps) {
+export function NoteForm({ onSubmitEffect, id, folderId }: NoteFormProps) {
   const titleId = useId();
   const contentId = useId();
-  const { register, errors, isError, onSubmit, control } =
-    useCreateNote(onSubmitEffect);
+  const { register, errors, isError, onSubmit, control } = useCreateNote(
+    onSubmitEffect,
+    folderId,
+  );
 
   return (
     <form className="space-y-2" onSubmit={onSubmit} id={id}>

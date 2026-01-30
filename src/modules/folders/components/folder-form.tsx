@@ -6,16 +6,24 @@ import { useCreateFolder } from "../hooks/use-create-folder";
 
 type FolderFormProps = {
   id: string;
+  folderId?: string;
   className?: string;
   onSubmitEffect?: () => void;
 };
 
-export function FolderForm({ className, id, onSubmitEffect }: FolderFormProps) {
+export function FolderForm({
+  className,
+  id,
+  folderId,
+  onSubmitEffect,
+}: FolderFormProps) {
   const fieldNameId = useId();
   const fieldDescriptionId = useId();
 
-  const { errors, isError, onSubmit, register } =
-    useCreateFolder(onSubmitEffect);
+  const { errors, isError, onSubmit, register } = useCreateFolder(
+    onSubmitEffect,
+    folderId,
+  );
 
   return (
     <form id={id} className={className} onSubmit={onSubmit}>

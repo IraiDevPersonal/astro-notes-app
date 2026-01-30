@@ -5,7 +5,11 @@ import { CreateNoteModal } from "@/modules/notes/components/create-note-modal";
 import { Folder, StickyNote } from "lucide-react";
 import { useState } from "react";
 
-export function CreateResourceFab() {
+type CreateResourceFabProps = {
+  folderId?: string;
+};
+
+export function CreateResourceFab({ folderId }: CreateResourceFabProps) {
   const [openFab, setOpenFab] = useState(false);
   const [openNote, setOpenNote] = useState(false);
   const [openFolder, setOpenFolder] = useState(false);
@@ -38,8 +42,16 @@ export function CreateResourceFab() {
         </Button>
       </Fab>
 
-      <CreateFolderModal open={openFolder} onOpenChange={setOpenFolder} />
-      <CreateNoteModal open={openNote} onOpenChange={setOpenNote} />
+      <CreateFolderModal
+        folderId={folderId}
+        open={openFolder}
+        onOpenChange={setOpenFolder}
+      />
+      <CreateNoteModal
+        folderId={folderId}
+        open={openNote}
+        onOpenChange={setOpenNote}
+      />
     </>
   );
 }

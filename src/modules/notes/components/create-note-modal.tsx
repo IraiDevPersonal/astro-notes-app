@@ -8,6 +8,7 @@ const CREATE_NOTE_FORM_ID = "create-note-form";
 
 type CreateNoteModalProps = {
   onOpenChange: (open: boolean) => void;
+  folderId?: string;
   open: boolean;
 };
 
@@ -25,6 +26,7 @@ export function CreateNoteModal(props: CreateNoteModalProps) {
           </Modal.Description>
           <NoteForm
             id={CREATE_NOTE_FORM_ID}
+            folderId={props.folderId}
             onSubmitEffect={() => props.onOpenChange(false)}
           />
         </Modal.Body>
