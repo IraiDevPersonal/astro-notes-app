@@ -1,14 +1,16 @@
+import "./styles.css";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { Search, X } from "lucide-react";
 import { Button } from "../button";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import "./styles.css";
+import { useQueryState } from "@/hooks/use-query-state";
 
 export function SearchBox() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { query, setQuery, handleSearch } = useQueryState("q");
+  const [isSearchOpen, setIsSearchOpen] = useState(!!query);
   useClickOutside([wrapperRef], () => setIsSearchOpen(false), !isSearchOpen);
 
   const handleSearchToggleOpen = () => {
@@ -19,6 +21,12 @@ export function SearchBox() {
 
       return !prev;
     });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -53,6 +61,11 @@ export function SearchBox() {
           placeholder="Buscar..."
           type="text"
           ref={inputRef}
+          value={query ?? ""}
+          onBlur={handleSearch}
+          autoFocus={isSearchOpen}
+          onKeyDown={handleKeyDown}
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
     </div>

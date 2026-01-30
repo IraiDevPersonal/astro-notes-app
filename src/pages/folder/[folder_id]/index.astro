@@ -7,7 +7,7 @@ import { getFolderByIdService } from "@/modules/folders/services/get-folder-by-i
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
 import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 
-const folderId = Astro.params.uid;
+const folderId = Astro.params.folder_id;
 const [error, data] = await getFolderByIdService(folderId ?? "");
 
 const folders = data?.data?.subfolders ?? [];
@@ -17,7 +17,7 @@ const notes = data?.data?.notes ?? [];
 <AuthLayout title="Mi Espacio">
   <CreateResourceFab client:visible folderId={folderId} />
   <PageContent>
-    <PageHeader> Carpeta </PageHeader>
+    <PageHeader> {data?.data.name} </PageHeader>
 
     <Main>
       <ResourceGrid folders={folders} notes={notes} error={error} />

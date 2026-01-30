@@ -6,7 +6,11 @@ import PageHeader from "@/components/ui/PageHeader.astro";
 import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 
-const [error, data] = await getResourcesService();
+const searchParams = new URLSearchParams(Astro.url.searchParams);
+
+const [error, data] = await getResourcesService(undefined, {
+  q: searchParams.get("q") ?? undefined,
+});
 
 const folders = data?.data?.folders ?? [];
 const notes = data?.data?.notes ?? [];
