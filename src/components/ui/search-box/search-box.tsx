@@ -54,10 +54,11 @@ export function SearchBox() {
 
       <div
         data-open={isSearchOpen}
-        className="absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l-lg bg-secondary/8 backdrop-blur-sm transition-[width,opacity] h-full data-[open=true]:w-72 data-[open=true]:opacity-100"
+        className="absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l-lg bg-secondary/8 backdrop-blur-sm transition-[width,opacity] h-full data-[open=true]:w-72 data-[open=true]:opacity-100 flex items-center gap-3 ps-3"
       >
+        <Search className="size-4" />
         <input
-          className="h-full w-full bg-transparent outline-none! ring-0! px-3 text-sm"
+          className="h-full w-full bg-transparent outline-none! ring-0! pe-3 text-sm tracking-widest"
           placeholder="Buscar..."
           type="text"
           ref={inputRef}
