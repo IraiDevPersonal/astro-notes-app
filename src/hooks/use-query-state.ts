@@ -35,7 +35,7 @@ export function useQueryState<T extends string>(key: T, options: Options = {}) {
 
   return {
     query,
-    handleSearch,
+    onSearch: handleSearch,
     setQuery: setSearchState,
   };
 }

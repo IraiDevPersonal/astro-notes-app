@@ -9,7 +9,7 @@ import { useQueryState } from "@/hooks/use-query-state";
 export function SearchBox() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const { query, setQuery, handleSearch } = useQueryState("q");
+  const { query, setQuery, onSearch } = useQueryState("q");
   const [isSearchOpen, setIsSearchOpen] = useState(!!query);
   useClickOutside([wrapperRef], () => setIsSearchOpen(false), !isSearchOpen);
 
@@ -25,7 +25,7 @@ export function SearchBox() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      handleSearch();
+      onSearch();
     }
   };
 
@@ -62,7 +62,7 @@ export function SearchBox() {
           type="text"
           ref={inputRef}
           value={query ?? ""}
-          onBlur={handleSearch}
+          onBlur={onSearch}
           autoFocus={isSearchOpen}
           onKeyDown={handleKeyDown}
           onChange={(e) => setQuery(e.target.value)}
