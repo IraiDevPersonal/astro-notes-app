@@ -21,7 +21,8 @@ const me = data?.data;
 ---
 
 <AuthLayout title="Mi Espacio">
-  <CreateResourceFab client:visible />
+  <CreateResourceFab isPinned client:visible />
+
   <PageContent>
     <PageHeader>
       Bienvenido, {me?.name}&nbsp;{me?.lastName}

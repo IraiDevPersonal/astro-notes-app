@@ -7,9 +7,10 @@ import { useState } from "react";
 
 type CreateResourceFabProps = {
   folderId?: string;
+  isPinned?: boolean;
 };
 
-export function CreateResourceFab({ folderId }: CreateResourceFabProps) {
+export function CreateResourceFab(props: CreateResourceFabProps) {
   const [openFab, setOpenFab] = useState(false);
   const [openNote, setOpenNote] = useState(false);
   const [openFolder, setOpenFolder] = useState(false);
@@ -43,15 +44,11 @@ export function CreateResourceFab({ folderId }: CreateResourceFabProps) {
       </Fab>
 
       <CreateFolderModal
-        folderId={folderId}
-        open={openFolder}
         onOpenChange={setOpenFolder}
+        open={openFolder}
+        {...props}
       />
-      <CreateNoteModal
-        folderId={folderId}
-        open={openNote}
-        onOpenChange={setOpenNote}
-      />
+      <CreateNoteModal onOpenChange={setOpenNote} open={openNote} {...props} />
     </>
   );
 }

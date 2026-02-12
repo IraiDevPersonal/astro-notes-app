@@ -7,14 +7,19 @@ import { Chip } from "@/components/ui/chip";
 const CREATE_FOLDER_FORM_ID = "create-folder-form";
 
 type CreateFolderModalProps = {
-  open: boolean;
-  folderId?: string;
   onOpenChange: (open: boolean) => void;
+  isPinned?: boolean;
+  folderId?: string;
+  open: boolean;
 };
 
-export function CreateFolderModal(props: CreateFolderModalProps) {
+export function CreateFolderModal({
+  onOpenChange,
+  open,
+  ...props
+}: CreateFolderModalProps) {
   return (
-    <Modal {...props}>
+    <Modal open={open} onOpenChange={onOpenChange}>
       <Modal.Overlay />
       <Modal.Content className="md:max-w-lg">
         <Modal.Header>
@@ -27,9 +32,9 @@ export function CreateFolderModal(props: CreateFolderModalProps) {
           </Modal.Description>
 
           <FolderForm
+            onSubmitEffect={() => onOpenChange(false)}
             id={CREATE_FOLDER_FORM_ID}
-            folderId={props.folderId}
-            onSubmitEffect={() => props.onOpenChange(false)}
+            {...props}
           />
         </Modal.Body>
 

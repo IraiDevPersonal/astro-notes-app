@@ -3,9 +3,14 @@ import type { CreateFolderModel } from "../models/upsert-folder.model";
 import { createFolderSchema } from "../schemas/upsert-folder.schema";
 import { createFolderService } from "../services/create-folder.service";
 
+type UseCreateFolderOptions = {
+  folderId?: string;
+  isPinned?: boolean;
+};
+
 export function useCreateFolder(
   onSubmitEffect?: () => void,
-  folderId?: string,
+  options?: UseCreateFolderOptions,
 ) {
   const {
     isError,
@@ -22,7 +27,7 @@ export function useCreateFolder(
 
   const onSubmit = handleSubmit(async (values: CreateFolderModel) => {
     try {
-      await createFolderService({ ...values, parentId: folderId });
+      await createFolderService({ ...values, ...options });
       onSubmitEffect?.();
       window.location.reload();
     } catch (error) {

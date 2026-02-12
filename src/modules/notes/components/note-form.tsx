@@ -6,17 +6,23 @@ import { useCreateNote } from "../hooks/use-create-folder";
 import { Controller } from "react-hook-form";
 
 type NoteFormProps = {
-  id?: string;
-  folderId?: string;
   onSubmitEffect?: () => void;
+  isPinned?: boolean;
+  folderId?: string;
+  id?: string;
 };
 
-export function NoteForm({ onSubmitEffect, id, folderId }: NoteFormProps) {
+export function NoteForm({
+  onSubmitEffect,
+  folderId,
+  isPinned,
+  id,
+}: NoteFormProps) {
   const titleId = useId();
   const contentId = useId();
   const { register, errors, isError, onSubmit, control } = useCreateNote(
     onSubmitEffect,
-    folderId,
+    { folderId, isPinned },
   );
 
   return (

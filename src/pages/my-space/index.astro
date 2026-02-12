@@ -3,6 +3,7 @@ import AuthLayout from "@/components/layouts/AuthLayout.astro";
 import Main from "@/components/ui/Main.astro";
 import PageContent from "@/components/ui/PageContent.astro";
 import PageHeader from "@/components/ui/PageHeader.astro";
+import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
 import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
 import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 
@@ -17,6 +18,8 @@ const notes = data?.data?.notes ?? [];
 ---
 
 <AuthLayout title="Mi Espacio">
+  <CreateResourceFab client:visible />
+
   <PageContent>
     <PageHeader> Mi Espacio </PageHeader>
 
