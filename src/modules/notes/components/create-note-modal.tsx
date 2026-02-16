@@ -8,28 +8,39 @@ const CREATE_NOTE_FORM_ID = "create-note-form";
 
 type CreateNoteModalProps = {
   onOpenChange: (open: boolean) => void;
+  folderId?: string;
+  isPinned?: boolean;
   open: boolean;
 };
 
-export function CreateNoteModal(props: CreateNoteModalProps) {
+export function CreateNoteModal({
+  onOpenChange,
+  open,
+  ...props
+}: CreateNoteModalProps) {
   return (
-    <Modal {...props}>
+    <Modal open={open} onOpenChange={onOpenChange}>
       <Modal.Overlay />
       <Modal.Content className="md:max-w-4xl">
         <Modal.Header>
           <Modal.Title>Crear Nota</Modal.Title>
         </Modal.Header>
+
         <Modal.Body className="h-[calc(100dvh-10rem)]">
           <Modal.Description className="flex items-center">
             Crear nota en&nbsp;<Chip size={"sm"}>" / "</Chip>
           </Modal.Description>
+
           <NoteForm
+            onSubmitEffect={() => onOpenChange(false)}
             id={CREATE_NOTE_FORM_ID}
-            onSubmitEffect={() => props.onOpenChange(false)}
+            {...props}
           />
         </Modal.Body>
+
         <Modal.Footer>
           <Modal.Close>Cancelar</Modal.Close>
+
           <Button type="submit" form={CREATE_NOTE_FORM_ID}>
             Guardar
             <Save />

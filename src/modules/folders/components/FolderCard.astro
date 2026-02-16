@@ -9,12 +9,16 @@ import { FolderCardDropdown } from "./folder-card-dropdown";
 
 type Props = {
   name: string;
+  id: string;
 };
 
-const { name } = Astro.props;
+const { name, id } = Astro.props;
 ---
 
-<Card className="gap-2 justify-center items-center aspect-square relative">
+<Card
+  className="gap-2 justify-center items-center aspect-square relative"
+  id={id}
+>
   <CardHeader>
     <Folder
       className="size-10 text-muted-foreground fill-muted-foreground transition-[width,height]"
@@ -29,6 +33,6 @@ const { name } = Astro.props;
     </Typography>
   </CardBody>
   <CardAction className="absolute top-3 right-3">
-    <FolderCardDropdown client:visible />
+    <FolderCardDropdown client:visible id={id} />
   </CardAction>
 </Card>

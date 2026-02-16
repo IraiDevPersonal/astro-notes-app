@@ -2,20 +2,18 @@
 import { ErrorWrapper } from "@/components/ui/error-wrapper";
 import { Typography } from "@/components/ui/typography";
 import FolderCard from "@/modules/folders/components/FolderCard.astro";
+import type { SubFolderModel } from "@/modules/folders/models/subfolder.model";
 import NoteCard from "@/modules/notes/components/NoteCard.astro";
-import { getResourcesService } from "@/modules/resources/services/get-resources.service";
-import type { ResourceType } from "../models/resource-type.model";
+import type { NoteModel } from "@/modules/notes/models/note.model";
 
 type Props = {
-  resoureType?: ResourceType;
+  folders: SubFolderModel[];
+  notes: NoteModel[];
+  error: string | null;
 };
 
-const { resoureType } = Astro.props;
+const { folders, notes, error } = Astro.props;
 
-const [error, data] = await getResourcesService(resoureType);
-const resources = data?.data;
-const folders = resources?.folders ?? [];
-const notes = resources?.notes ?? [];
 const isEmpty = folders.length === 0 && notes.length === 0;
 ---
 
@@ -28,11 +26,11 @@ const isEmpty = folders.length === 0 && notes.length === 0;
     ) : (
       <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3 transition-[gap] pb-8">
         {folders.map((folder) => (
-          <FolderCard name={folder.name} />
+          <FolderCard id={folder.id} name={folder.name} />
         ))}
 
         {notes.map((note) => (
-          <NoteCard title={note.title} />
+          <NoteCard id={note.id} title={note.title} />
         ))}
       </div>
     )

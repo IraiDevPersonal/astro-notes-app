@@ -1,9 +1,13 @@
-import type { FolderModel } from "@/modules/folders/models/folder.model";
+import type { SubFolderModel } from "@/modules/folders/models/subfolder.model";
 import type { NoteModel } from "@/modules/notes/models/note.model";
 
-export type ResourceModel = {
+export type ResourcesModel = {
   name: string;
   id: string;
   notes: NoteModel[];
-  folders: FolderModel[];
+  folders: SubFolderModel[];
+};
+
+export type ResourcesResponseModel = {
+  data: ResourcesModel;
 };

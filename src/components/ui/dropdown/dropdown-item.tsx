@@ -1,16 +1,21 @@
 import { cn } from "@/lib/utils";
 import { useDropdownContext } from "./dropdown-context";
 
+const DEFAULT_CLASSNAME =
+  "px-3 py-2 hover:bg-foreground/8 transition-colors cursor-pointer [&>svg]:size-4 flex items-center gap-2 w-full text-sm";
+
 type DropdownItemProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
   className?: string;
+  href?: string;
 };
 
 export function DropdownItem({
+  className,
   children,
   onClick,
-  className,
+  href,
 }: DropdownItemProps) {
   const { onOpenChange } = useDropdownContext();
 
@@ -21,15 +26,18 @@ export function DropdownItem({
 
   return (
     <li aria-label="Dropdown Item" className="w-full">
-      <button
-        onClick={handleClick}
-        className={cn(
-          "px-3 py-2 hover:bg-foreground/8 transition-colors cursor-pointer [&>svg]:size-4 flex items-center gap-2 w-full text-sm",
-          className
-        )}
-      >
-        {children}
-      </button>
+      {href ? (
+        <a href={href} className={cn(DEFAULT_CLASSNAME, className)}>
+          {children}
+        </a>
+      ) : (
+        <button
+          onClick={handleClick}
+          className={cn(DEFAULT_CLASSNAME, "no-underline", className)}
+        >
+          {children}
+        </button>
+      )}
     </li>
   );
 }

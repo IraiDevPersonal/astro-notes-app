@@ -7,15 +7,22 @@ import DashboardCard from "@/modules/dashboard/components/DashboardCard.astro";
 import DashboardPinnedResourcesHeader from "@/modules/dashboard/components/DashboardPinnedResourcesHeader.astro";
 import { CreateResourceFab } from "@/modules/resources/components/create-resource-fab";
 import ResourceGrid from "@/modules/resources/components/ResourceGrid.astro";
+import { getResourcesService } from "@/modules/resources/services/get-resources.service";
 import { getMeService } from "@/modules/user/services/get-me.service";
 import { Share2, User } from "lucide-react";
+
+const [error, resourcesData] = await getResourcesService("pinned");
+
+const folders = resourcesData?.data?.folders ?? [];
+const notes = resourcesData?.data?.notes ?? [];
 
 const [_, data] = await getMeService();
 const me = data?.data;
 ---
 
 <AuthLayout title="Mi Espacio">
-  <CreateResourceFab client:visible />
+  <CreateResourceFab isPinned client:visible />
+
   <PageContent>
     <PageHeader>
       Bienvenido, {me?.name}&nbsp;{me?.lastName}
@@ -49,7 +56,7 @@ const me = data?.data;
       <section class="flex flex-col gap-y-4 lg:gap-y-8 transform-[gap]">
         <DashboardPinnedResourcesHeader />
 
-        <ResourceGrid resoureType="pinned" />
+        <ResourceGrid folders={folders} notes={notes} error={error} />
       </section>
     </Main>
   </PageContent>

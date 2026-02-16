@@ -1,14 +1,16 @@
+import "./styles.css";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { Search, X } from "lucide-react";
 import { Button } from "../button";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import "./styles.css";
+import { useQueryState } from "@/hooks/use-query-state";
 
 export function SearchBox() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { query, setQuery, onSearch } = useQueryState("q");
+  const [isSearchOpen, setIsSearchOpen] = useState(!!query);
   useClickOutside([wrapperRef], () => setIsSearchOpen(false), !isSearchOpen);
 
   const handleSearchToggleOpen = () => {
@@ -19,6 +21,12 @@ export function SearchBox() {
 
       return !prev;
     });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onSearch();
+    }
   };
 
   return (
@@ -46,13 +54,19 @@ export function SearchBox() {
 
       <div
         data-open={isSearchOpen}
-        className="absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l-lg bg-secondary/8 backdrop-blur-sm transition-[width,opacity] h-full data-[open=true]:w-72 data-[open=true]:opacity-100"
+        className="absolute top-0 right-full w-0 opacity-0 overflow-hidden rounded-l-lg bg-secondary/8 backdrop-blur-sm transition-[width,opacity] h-full data-[open=true]:w-72 data-[open=true]:opacity-100 flex items-center gap-3 ps-3"
       >
+        <Search className="size-4" />
         <input
-          className="h-full w-full bg-transparent outline-none! ring-0! px-3 text-sm"
+          className="h-full w-full bg-transparent outline-none! ring-0! pe-3 text-sm tracking-widest"
           placeholder="Buscar..."
           type="text"
           ref={inputRef}
+          value={query ?? ""}
+          onBlur={onSearch}
+          autoFocus={isSearchOpen}
+          onKeyDown={handleKeyDown}
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
     </div>

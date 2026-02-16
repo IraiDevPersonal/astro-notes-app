@@ -2,19 +2,28 @@ import { FormField } from "@/components/ui/field/form-field";
 import { Input } from "@/components/ui/input";
 import { TextEditor } from "@/components/ui/text-editor/text-editor";
 import { useId } from "react";
-import { useCreateNote } from "../hooks/use-create-folder";
+import { useCreateNote } from "../hooks/use-create-note";
 import { Controller } from "react-hook-form";
 
 type NoteFormProps = {
-  id?: string;
   onSubmitEffect?: () => void;
+  isPinned?: boolean;
+  folderId?: string;
+  id?: string;
 };
 
-export function NoteForm({ onSubmitEffect, id }: NoteFormProps) {
+export function NoteForm({
+  onSubmitEffect,
+  folderId,
+  isPinned,
+  id,
+}: NoteFormProps) {
   const titleId = useId();
   const contentId = useId();
-  const { register, errors, isError, onSubmit, control } =
-    useCreateNote(onSubmitEffect);
+  const { register, errors, isError, onSubmit, control } = useCreateNote(
+    onSubmitEffect,
+    { folderId, isPinned },
+  );
 
   return (
     <form className="space-y-2" onSubmit={onSubmit} id={id}>
