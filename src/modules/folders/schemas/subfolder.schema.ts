@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "astro:schema";
 
 export const subFolderSchema = z.object({
   id: z.string(),
@@ -11,8 +11,5 @@ export const subFolderSchema = z.object({
     userName: z.string(),
     fullName: z.string(),
   }),
-  sharedWith: z.object({
-    count: z.number(),
-    users: z.array(z.any()),
-  }),
+  sharedWith: z.any().array(),
 });

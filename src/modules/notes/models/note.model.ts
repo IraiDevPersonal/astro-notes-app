@@ -20,3 +20,7 @@ export type NoteModel = {
   };
   modifiedBy: string;
 };
+
+export type NoteResponseModel = {
+  data: NoteModel;
+};

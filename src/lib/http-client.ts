@@ -17,7 +17,10 @@ export class HttpClient {
   }
 
   public get = async <T>(endpoint: string, options?: RequestConfig<T>) => {
-    return await this.safeRequest(this.client.get<T>(endpoint, options));
+    return await this.safeRequest(
+      this.client.get<T>(endpoint, options),
+      options?.mapper,
+    );
   };
 
   public post = async <T>(
@@ -25,7 +28,10 @@ export class HttpClient {
     data: unknown,
     options?: RequestConfig<T>,
   ) => {
-    return await this.safeRequest(this.client.post<T>(endpoint, data, options));
+    return await this.mapData(
+      this.client.post<T>(endpoint, data, options),
+      options?.mapper,
+    );
   };
 
   public put = async <T>(
@@ -33,7 +39,10 @@ export class HttpClient {
     data: unknown,
     options?: RequestConfig<T>,
   ) => {
-    return await this.safeRequest(this.client.put<T>(endpoint, data, options));
+    return await this.mapData(
+      this.client.put<T>(endpoint, data, options),
+      options?.mapper,
+    );
   };
 
   public patch = async <T>(
@@ -41,13 +50,17 @@ export class HttpClient {
     data: unknown,
     options?: RequestConfig<T>,
   ) => {
-    return await this.safeRequest(
+    return await this.mapData(
       this.client.patch<T>(endpoint, data, options),
+      options?.mapper,
     );
   };
 
   public delete = async <T>(endpoint: string, options?: RequestConfig<T>) => {
-    return await this.safeRequest(this.client.delete<T>(endpoint, options));
+    return await this.safeRequest(
+      this.client.delete<T>(endpoint, options),
+      options?.mapper,
+    );
   };
 
   private safeRequest = async <T>(
@@ -56,7 +69,7 @@ export class HttpClient {
   ): Promise<[error: string | null, data: T | null]> => {
     try {
       const { data } = await promise;
-      return [null, mapper ? mapper(data) : data] as const;
+      return [null, this.mapData(data, mapper)] as const;
     } catch (error) {
       let errorMessage = "Error no controlado";
 
@@ -72,5 +85,9 @@ export class HttpClient {
 
       return [errorMessage, null] as const;
     }
+  };
+
+  private mapData = <T>(data: unknown, mapper?: (raw: unknown) => T) => {
+    return mapper ? mapper(data) : (data as any);
   };
 }

@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "astro:schema";
 
 export const sharedUserSchema = z.object({
   id: z.string(),

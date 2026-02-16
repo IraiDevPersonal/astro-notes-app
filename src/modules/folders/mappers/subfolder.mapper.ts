@@ -20,10 +20,7 @@ export class SubFolderMapper {
         userName: data.owner.userName,
         fullName: data.owner.fullName,
       },
-      sharedWith: {
-        count: data.sharedWith.count,
-        users: data.sharedWith.users,
-      },
+      sharedWith: data.sharedWith,
     };
   }
 }

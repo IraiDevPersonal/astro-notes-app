@@ -16,7 +16,7 @@ export async function getResourcesService(
         ...(resourceType ? { type: resourceType } : undefined),
         ...filters,
       },
-      mapper: ResourcesMapper.map,
+      mapper: ResourcesMapper.response,
     },
   );
 }

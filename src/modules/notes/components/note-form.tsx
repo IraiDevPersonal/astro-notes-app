@@ -2,7 +2,7 @@ import { FormField } from "@/components/ui/field/form-field";
 import { Input } from "@/components/ui/input";
 import { TextEditor } from "@/components/ui/text-editor/text-editor";
 import { useId } from "react";
-import { useCreateNote } from "../hooks/use-create-folder";
+import { useCreateNote } from "../hooks/use-create-note";
 import { Controller } from "react-hook-form";
 
 type NoteFormProps = {

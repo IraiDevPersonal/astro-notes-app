@@ -9,8 +9,5 @@ export type SubFolderModel = {
     userName: string;
     fullName: string;
   };
-  sharedWith: {
-    count: number;
-    users: any[];
-  };
+  sharedWith: any[];
 };

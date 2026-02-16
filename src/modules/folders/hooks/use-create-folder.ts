@@ -1,7 +1,8 @@
 import { useFormAdapter } from "@/hooks/use-form-adapter";
+import { revalidate } from "@/lib/revalidate";
+import { actions } from "astro:actions";
 import type { CreateFolderModel } from "../models/upsert-folder.model";
 import { createFolderSchema } from "../schemas/upsert-folder.schema";
-import { createFolderService } from "../services/create-folder.service";
 
 type UseCreateFolderOptions = {
   folderId?: string;
@@ -26,13 +27,15 @@ export function useCreateFolder(
   });
 
   const onSubmit = handleSubmit(async (values: CreateFolderModel) => {
-    try {
-      await createFolderService({ ...values, ...options });
-      onSubmitEffect?.();
-      window.location.reload();
-    } catch (error) {
+    const { error } = await actions.folders.create({ ...values, ...options });
+
+    if (error) {
       alert(error);
+      return;
     }
+
+    onSubmitEffect?.();
+    revalidate();
   });
 
   return {

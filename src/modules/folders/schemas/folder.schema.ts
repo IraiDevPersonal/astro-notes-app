@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "astro:schema";
 import { subFolderSchema } from "./subfolder.schema";
 import { sharedUserSchema } from "@/modules/user/schemas/shared-user.schema";
 
@@ -7,7 +7,7 @@ export const folderSchema = z.object({
   name: z.string(),
   order: z.number(),
   isPinned: z.boolean(),
-  parentId: z.string(),
+  parentId: z.string().nullable(),
   createdAt: z.string(),
   updatedAt: z.string(),
   description: z.string(),
@@ -16,8 +16,12 @@ export const folderSchema = z.object({
   owner: sharedUserSchema,
   sharedWith: z.object({
     counts: z.number(),
-    users: z.array(sharedUserSchema),
+    users: sharedUserSchema.array(),
   }),
   modifiedBy: sharedUserSchema.nullable(),
-  subfolders: z.array(subFolderSchema),
+  subfolders: subFolderSchema.array(),
+});
+
+export const folderResponseSchema = z.object({
+  data: folderSchema,
 });

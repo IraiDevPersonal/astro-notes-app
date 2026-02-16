@@ -21,3 +21,7 @@ export type FolderModel = {
   };
   subfolders: SubFolderModel[];
 };
+
+export type FolderResponseModel = {
+  data: FolderModel;
+};

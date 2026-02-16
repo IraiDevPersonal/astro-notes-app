@@ -1,6 +1,7 @@
 import { useFormAdapter } from "@/hooks/use-form-adapter";
+import { revalidate } from "@/lib/revalidate";
+import { actions } from "astro:actions";
 import type { CreateNoteModel } from "../models/upsert-note.model";
-import { createNoteService } from "../services/upsert-note.service";
 import { createNoteSchema } from "../schemas/upsert-note.schema";
 
 type UseCreateNoteOptions = {
@@ -13,9 +14,9 @@ export function useCreateNote(
   options?: UseCreateNoteOptions,
 ) {
   const {
+    control,
     isError,
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useFormAdapter<CreateNoteModel>({
@@ -27,13 +28,20 @@ export function useCreateNote(
   });
 
   const onSubmit = handleSubmit(async (values: CreateNoteModel) => {
-    try {
-      await createNoteService({ ...values, ...options });
-      onSubmitEffect?.();
-      window.location.reload();
-    } catch (error) {
+    const { error, data } = await actions.notes.create({
+      ...values,
+      ...options,
+    });
+
+    if (error) {
       alert(error);
+      return;
     }
+
+    console.log(data);
+
+    onSubmitEffect?.();
+    revalidate();
   });
 
   return {

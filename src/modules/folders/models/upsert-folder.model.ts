@@ -1,4 +1,6 @@
-import type { z } from "zod";
+// import type { z } from "zod";
+
+import { z } from "astro:schema";
 import type {
   createFolderSchema,
   updateFolderSchema,

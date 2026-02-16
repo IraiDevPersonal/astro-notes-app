@@ -7,3 +7,7 @@ export type ResourcesModel = {
   notes: NoteModel[];
   folders: SubFolderModel[];
 };
+
+export type ResourcesResponseModel = {
+  data: ResourcesModel;
+};
