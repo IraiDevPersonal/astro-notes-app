@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { z } from "astro:schema";
 import { useCallback } from "react";
 import {
   useForm,
@@ -6,8 +7,6 @@ import {
   type UseFormProps,
   type UseFormReturn,
 } from "react-hook-form";
-import type z from "zod";
-
 type UseFormAdapterProps<TFieldValues extends FieldValues = FieldValues> = {
   schema?: z.ZodSchema;
 } & Omit<UseFormProps<TFieldValues, any, TFieldValues>, "resolver">;

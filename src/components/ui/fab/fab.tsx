@@ -43,7 +43,7 @@ export function Fab({
   );
 
   return (
-    <div className="fixed bottom-4 right-4 z-30" ref={wrapperRef}>
+    <div className="absolute bottom-4 right-4 z-30" ref={wrapperRef}>
       <Button
         onClick={() => handleToggle()}
         size={"icon-xl"}

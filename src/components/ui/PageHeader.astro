@@ -13,10 +13,10 @@ import { SearchBox } from "./search-box";
 
   <Typography
     as="h1"
-    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl truncate max-w-sm md:max-w-md lg:max-w-full"
+    className="transition-[font-size] text-xl sm:text-2xl md:text-4xl truncate max-w-sm md:max-w-md lg:max-w-full capitalize"
   >
     <slot />
   </Typography>
 
-  <SearchBox client:visible />
+  <SearchBox client:only />
 </Header>

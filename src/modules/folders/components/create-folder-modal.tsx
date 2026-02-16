@@ -4,14 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Save } from "lucide-react";
 import { Chip } from "@/components/ui/chip";
 
+const CREATE_FOLDER_FORM_ID = "create-folder-form";
+
 type CreateFolderModalProps = {
-  open: boolean;
   onOpenChange: (open: boolean) => void;
+  isPinned?: boolean;
+  folderId?: string;
+  open: boolean;
 };
 
-export function CreateFolderModal(props: CreateFolderModalProps) {
+export function CreateFolderModal({
+  onOpenChange,
+  open,
+  ...props
+}: CreateFolderModalProps) {
   return (
-    <Modal {...props}>
+    <Modal open={open} onOpenChange={onOpenChange}>
       <Modal.Overlay />
       <Modal.Content className="md:max-w-lg">
         <Modal.Header>
@@ -24,15 +32,16 @@ export function CreateFolderModal(props: CreateFolderModalProps) {
           </Modal.Description>
 
           <FolderForm
-            id="create-folder-form"
-            onSubmitEffect={() => props.onOpenChange(false)}
+            onSubmitEffect={() => onOpenChange(false)}
+            id={CREATE_FOLDER_FORM_ID}
+            {...props}
           />
         </Modal.Body>
 
         <Modal.Footer>
           <Modal.Close>Cancelar</Modal.Close>
 
-          <Button type="submit" form="create-folder-form">
+          <Button type="submit" form={CREATE_FOLDER_FORM_ID}>
             Guardar
             <Save />
           </Button>
